@@ -1,51 +1,30 @@
 package br.unitins.pmwcars.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
-public class Usuario {
-
-	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Usuario extends DefaultEntity<Usuario> {
 	
-//	@Column(unique = true, length = 14)
-	private String cpf;
+	private static final long serialVersionUID = 6662444843042956351L;
+
+	private String login;
 	
-//	@Column(length = 120)
-	private String nome;
+	private String senha;
 	
-	public Integer getId() {
-		return id;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	@Override
-	public String toString() {
-		return "Paciente [id=" + id + ", cpf=" + cpf + ", nome=" + nome + "]";
-	}
-	
 }

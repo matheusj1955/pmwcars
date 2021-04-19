@@ -14,8 +14,7 @@ public class TesteJPA {
 		
 		Usuario usuario = new Usuario();
 		usuario.setId(2);
-		usuario.setCpf("111");
-		usuario.setNome("Joao");
+//		usuario.setNome("Joao");
 		
 		em.getTransaction().begin();
 		em.persist(usuario);
