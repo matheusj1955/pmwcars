@@ -1,9 +1,13 @@
 package br.unitins.pmwcars.model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.enterprise.inject.Model;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Carro extends DefaultEntity<Carro> {
@@ -16,19 +20,25 @@ public class Carro extends DefaultEntity<Carro> {
 	
 	private Date ano;
 
-//	private  ano;
-
+	@OneToMany(mappedBy = "carro")
+	private List<ItemVenda> listaitemvenda;
+	
+//	@ManyToOne
+//	@JoinColumn(name="idmodelo", nullable = false)
+//	private Modelo modelo;
+	
 	@ManyToOne
-	private Estado estado;
+	@JoinColumn(name="idmarca", nullable = false)
+	private Marca marca;
 	
-	
-	public Estado getEstado() {
-		return estado;
-	}
+//	@ManyToOne
+//	@JoinColumn(name="idstatus", nullable = false)
+//	private Status status;
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
+
+	@OneToMany(mappedBy = "carro")
+	private List<Garagem> garragem;
+	
 
 	public String getNome() {
 		return nome;

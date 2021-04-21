@@ -13,10 +13,7 @@ import br.untinis.pmwcars.repository.FuncionarioRepository;
 @Named
 @ViewScoped
 public class FuncionarioController extends Controller<Funcionario> {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1067992066000332854L;
 	private List<Funcionario> listaFuncionario;
 

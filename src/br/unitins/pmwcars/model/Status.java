@@ -4,18 +4,18 @@ import java.util.List;
 
 import javax.persistence.OneToMany;
 
-public enum TipoFuncionario {
+public enum Status {
 
-	GERENTE(1, "Gerente"), 
-	OPERACIONAL(1, "Operacional");
-
-	@OneToMany(mappedBy = "tipofuncionario")
-	private List<Funcionario> listafuncionario;
+	VENDIDO(1, "Vendido"),
+	EMESTOQUE(1, "Emestoque"),;
 	
+	@OneToMany(mappedBy = "status")
+	private List<Carro> listaCarro;
+
 	private int id;
 	private String label;
 	
-	TipoFuncionario(int id, String label) {
+	Status(int id, String label) {
 		this.id = id;
 		this.label = label;
 	}
@@ -35,4 +35,15 @@ public enum TipoFuncionario {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
+//	public List<Carro> getListaCarro() {
+//		return listaCarro;
+//	}
+//
+//	public void setListaCarro(List<Carro> listaCarro) {
+//		this.listaCarro = listaCarro;
+//	}
+
+	
+	
 }

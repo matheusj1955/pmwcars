@@ -1,17 +1,31 @@
 package br.unitins.pmwcars.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Pessoa extends DefaultEntity<Pessoa> {
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class Pessoa extends DefaultEntity<Pessoa> {
 	
 	private static final long serialVersionUID = -3680524947926074024L;
 
+	@OneToOne
+	@JoinColumn(unique = true, name="idendereco", nullable = false)
+	private Endereco Endereco;
+	
+	
+	//	@OneToOne(mappedBy = "pessoa")
+	
+	
 	private String nome;
 	
-	private LocalDate dataNascimento;
+	private Date nascimento;
 
 	private String email;
 	
@@ -24,20 +38,20 @@ public class Pessoa extends DefaultEntity<Pessoa> {
 		this.nome = nome;
 	}
 
-	public LocalDate getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(LocalDate dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Date getNascimento() {
+		return nascimento;
+	}
+
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
 	}
 	
 	

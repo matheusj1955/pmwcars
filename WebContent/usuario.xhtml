@@ -22,23 +22,24 @@
 			<h:panelGrid columns="2">
 			
 				<p:commandLink value="Nome: " onclick="PF('dlg').show()"/>
-				<p:inputText value="#{usuarioController.entity.nome}"/>
-			
-				<p:outputLabel value="cpf: "/>
-				<p:inputText value="#{usuarioController.entity.cpf}"/>
-			
-				<p:outputLabel value="Login: "/>
-				<p:inputText value="#{usuarioController.entity.login}"/>
+				<p:inputText value="#{pessoaController.entity.nome}"/>
 			
 				<p:outputLabel value="Email: "/>
-				<p:inputText value="#{usuarioController.entity.email}"/>
+				<p:inputText value="#{pessoaController.entity.email}"/>
+			
+				<h:outputLabel value="Ano: " />
+				<p:inputText id="itData" value="#{pessoaController.entity.nascimento}" 
+					converterMessage="Erro ao converter a data">
+					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
+				</p:inputText>
+                
+               	<p:outputLabel value="Login: "/>
+				<p:inputText value="#{usuarioController.entity.login}"/>
 			
 				<p:outputLabel value="Senha: "/>
 				<p:inputText value="#{usuarioController.entity.senha}"/>
-				
-				<p:outputLabel for="phone" value="Telefone: "/>
-           		<p:inputMask id="phone" value="#{usuarioController.entity.telefone}" mask="(99) 99999-9999" validateMask="true"/>
-				
+			
+                
 			</h:panelGrid>
 			<f:facet name="footer">
 				<p:commandButton 

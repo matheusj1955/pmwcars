@@ -1,5 +1,8 @@
 package br.unitins.pmwcars.model;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Estado extends DefaultEntity<Estado> {
@@ -9,6 +12,10 @@ public class Estado extends DefaultEntity<Estado> {
 		private String nome;
 		private String sigla;
 
+		
+		@OneToMany(mappedBy = "estado")
+		private List<Cidade> listaCidade;
+		
 		public String getNome() {
 			return nome;
 		}

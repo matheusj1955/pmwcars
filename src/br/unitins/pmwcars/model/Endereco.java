@@ -1,6 +1,8 @@
 package br.unitins.pmwcars.model;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Endereco extends DefaultEntity<Endereco> {
@@ -11,6 +13,11 @@ public class Endereco extends DefaultEntity<Endereco> {
 	private String numero;
 	private String complemento;
 	private String bairro;
+	
+	@ManyToOne
+	@JoinColumn(name="idcidade", nullable = false)
+	private Cidade cidade;
+	
 	public String getCep() {
 		return cep;
 	}

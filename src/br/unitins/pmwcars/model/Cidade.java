@@ -1,8 +1,11 @@
 package br.unitins.pmwcars.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cidade extends DefaultEntity<Cidade> {
@@ -13,6 +16,9 @@ public class Cidade extends DefaultEntity<Cidade> {
 	@ManyToOne
 	@JoinColumn(name="idestado", nullable = false)
 	private Estado estado;
+	
+	@OneToMany(mappedBy = "cidade")
+	private List<Endereco> endereco;
 	
 	public Estado getEstado() {
 		return estado;

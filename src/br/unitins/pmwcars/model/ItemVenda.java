@@ -1,16 +1,25 @@
 package br.unitins.pmwcars.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ItemVenda extends DefaultEntity<ItemVenda>{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -3684236988369469670L;
 	private Integer quantidade;
 	private double valor;
+	
+	@ManyToOne
+	@JoinColumn(name="idcliente", nullable = false)
+	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name="idcarro", nullable = false)
+	private Carro carro;
 	
 	public double getValor() {
 		return valor;

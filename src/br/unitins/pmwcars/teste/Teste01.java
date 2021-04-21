@@ -15,8 +15,5 @@ public class Teste01 {
 		query.getResultList();
 		System.out.println("feito.");
 		
-	}
-	
-	
-
+	}	
 }

@@ -10,30 +10,31 @@ import javax.persistence.EntityManager;
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.application.Util;
-import br.unitins.pmwcars.model.Perfil;
-import br.unitins.pmwcars.model.Usuario;
-import br.untinis.pmwcars.repository.UsuarioRepository;
+import br.unitins.pmwcars.model.Pessoa;
+import br.unitins.pmwcars.model.PessoaFisica;
+import br.untinis.pmwcars.repository.PessoaRepository;
 
 @Named
 @ViewScoped
-public class UsuarioController extends Controller<Usuario> {
+public class PessoaController extends Controller<Pessoa>{
 
-	private static final long serialVersionUID = 8086276094345653703L;
+	private static final long serialVersionUID = 1401821123737357649L;
+	////////// pessoa
 	
-	private List<Usuario> listaUsuario;
+	private List<Pessoa> listaPessoa;
 
 	@Override
-	public Usuario getEntity() {
+	public Pessoa getEntity() {
 		if (entity == null)
-			entity = new Usuario();
+			entity = new PessoaFisica(); //////////////
 		return entity;
 	}
 
 	public void pesquisar() {
 		System.out.println("Pesquisar");
-		UsuarioRepository repo = new UsuarioRepository();
+		PessoaRepository repo = new PessoaRepository();
 		try {
-			listaUsuario = repo.findAll();
+			listaPessoa = repo.findAll();
 		} catch (RepositoryException e) {
 			
 		}
@@ -42,7 +43,7 @@ public class UsuarioController extends Controller<Usuario> {
 	
 	@Override
 	public void salvar() {
-		UsuarioRepository repo = new UsuarioRepository();
+		PessoaRepository repo = new PessoaRepository();
 		try {
 			repo.beginTransaction();
 			repo.save(getEntity());
@@ -59,32 +60,27 @@ public class UsuarioController extends Controller<Usuario> {
 	}
 
 
-	public void pesquisarUsuario() {
+	public void pesquisarPessoa() {
 		EntityManager em = JPAUtil.getEntityManager();
-		UsuarioRepository repo = new UsuarioRepository();
+		PessoaRepository repo = new PessoaRepository();
 		try {
-			setListaUsuario(repo.findAll());
+			setListaPessoa(repo.findAll());
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			Util.addErrorMessage("Problema ao excluir.");
-			setListaUsuario(null);
+			setListaPessoa(null);
 		}
 	}
 	
-	public List<Usuario> getListaUsuario() {
-		if (listaUsuario == null)
-			listaUsuario = new ArrayList<Usuario>();
-		return listaUsuario;
+	public List<Pessoa> getListaPessoa() {
+		if (listaPessoa == null)
+			listaPessoa = new ArrayList<Pessoa>();
+		return listaPessoa;
 	}
 
-	public void setListaUsuario(List<Usuario> listaUsuario) {
-		this.listaUsuario = listaUsuario;
+	public void setListaPessoa(List<Pessoa> listaPessoa) {
+		this.listaPessoa = listaPessoa;
 	}
 	
-	public Perfil[] getListaPerfil() {
-		return Perfil.values();
-	}
-
-
 
 }

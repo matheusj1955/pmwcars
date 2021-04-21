@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+
+<h:body>
+		<h:form>
+ 		<p:growl id="growl" showDetail="true" />
+		<p:panel header="Login" >
+			<h:panelGrid columns="2">
+							
+				<p:outputLabel style="margin-bottom:0;" value="Usuário:"  styleClass="wdi-red"/>
+				<p:inputText styleClass="form-control form-control-lg flat-input"
+								value="#{loginController.usuario.login}" />
+                
+                
+				<p:outputLabel style="margin-bottom:0;" value="Senha:" styleClass="wdi-red"/>
+				<p:password
+					styleClass="form-control form-control-lg flat-input"
+					value="#{loginController.usuario.senha}" />
+                       
+			</h:panelGrid>
+			<f:facet name="footer">
+				<p:commandButton 
+					value="Logar" 
+					icon="fas fa-sign-in-alt"
+					actionListener="#{loginController.logar()}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Sair" 
+					icon="fas fa-times"
+					actionListener="#{carroController.excluir}"
+					process="@this @form"
+					update="@form">
+					<p:confirm header="Confirmação" 
+						message="Deseja excluir o carro ?" 
+						icon="pi pi-info-circle"/>
+				</p:commandButton>
+			<h:outputLink value="http://localhost:8080/Pmwcars/usuario.xhtml" >Novo usuário?</h:outputLink>
+
+			</f:facet>
+		</p:panel>
+	</h:form>
+</h:body>
+</ui:define>
+</ui:composition>

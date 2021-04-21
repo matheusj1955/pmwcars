@@ -6,6 +6,7 @@
 	<persistence-unit name="Pmwcars">
 		<class>br.unitins.pmwcars.model.Carro</class>
 		<class>br.unitins.pmwcars.model.Cidade</class>
+		<class>br.unitins.pmwcars.model.Cliente</class>
 		<class>br.unitins.pmwcars.model.DefaultEntity</class>
 		<class>br.unitins.pmwcars.model.Endereco</class>
 		<class>br.unitins.pmwcars.model.Estado</class>
@@ -13,6 +14,7 @@
 		<class>br.unitins.pmwcars.model.Garagem</class>
 		<class>br.unitins.pmwcars.model.ItemVenda</class>
 		<class>br.unitins.pmwcars.model.Marca</class>
+		<class>br.unitins.pmwcars.model.Pagamento</class>
 		<class>br.unitins.pmwcars.model.Pessoa</class>
 		<class>br.unitins.pmwcars.model.PessoaFisica</class>
 		<class>br.unitins.pmwcars.model.PessoaJuridica</class>
@@ -43,7 +45,7 @@
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 
 			<!-- create / create-drop / update -->
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 
 			<!-- Show SQL in console -->
 			<property name="hibernate.show_sql" value="true" />

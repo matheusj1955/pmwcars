@@ -11,32 +11,19 @@
 		<p:panel header="Cadastro de Carro" >
 			<h:panelGrid columns="2">
 			
-				<p:commandLink value="Nome: " 
-					actionListener="#{carroController.abrirCarroListing}"
-					process="@this" update="@none">
-					 <p:ajax event="dialogReturn" listener="#{carroController.obterCarroListing}" 
-					  update="@form"/>
-				</p:commandLink>
-				<p:inputText id="itNome" value="#{carroController.entity.nome}"/>
+			
+				<p:outputLabel value="Nome: "/>
+				<p:inputText value="#{carroController.entity.nome}"/>
 				
-		
                 <p:outputLabel value="Valor: "/>
                 <p:inputNumber value="#{carroController.entity.valor}" modifyValueOnWheel="false" />
                 
-                
-				<h:outputLabel value="Data Nascimento:" />
+				<h:outputLabel value="Ano: " />
 				<p:inputText id="itData" value="#{carroController.entity.ano}" 
 					converterMessage="Erro ao converter a data">
 					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
 				</p:inputText>
                 
-				<p:commandLink value="Made in: " 
-					actionListener="#{carroController.abrirEstadoListing}"
-					process="@this" update="@none">
-					 <p:ajax event="dialogReturn" listener="#{carroController.obterEstadoListing}" 
-					  update="itEstado"/>
-				</p:commandLink>
-				<p:inputText id="itEstado" value="#{carroController.entity.estado.nome}"/>
 				
 			</h:panelGrid>
 			<f:facet name="footer">

@@ -9,6 +9,7 @@ import br.untinis.pmwcars.repository.Repository;
 public abstract class Controller<T extends DefaultEntity<T>> implements Serializable {
 	
 	private static final long serialVersionUID = -1316122369754938069L;
+	
 	protected T entity;
 
 	public Controller() {
@@ -44,7 +45,8 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 			repo.remove(getEntity());
 			repo.commitTransaction();
 			
-			Util.addInfoMessage("Usuario removido com sucesso.");
+			limpar();
+			Util.addInfoMessage("Cliente removido com sucesso.");
 		} catch (RepositoryException e) {
 			Util.addErrorMessage(e.getMessage());
 		}
@@ -58,5 +60,7 @@ public abstract class Controller<T extends DefaultEntity<T>> implements Serializ
 		System.out.println("Entrou no editar");
 		setEntity(entity);
 	}
+	
 
+	
 }
