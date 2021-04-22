@@ -10,8 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Pessoa extends DefaultEntity<Pessoa> {
+//@Inheritance(strategy=InheritanceType.JOINED)
+public class Pessoa extends DefaultEntity<Pessoa> {
 	
 	private static final long serialVersionUID = -3680524947926074024L;
 

@@ -23,7 +23,14 @@
 					converterMessage="Erro ao converter a data">
 					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
 				</p:inputText>
-                
+				
+				<p:commandLink value="Marca: " 
+					actionListener="#{carroController.abrirMarcaListing}"
+					process="@this" update="@none">
+					 <p:ajax event="dialogReturn" listener="#{carroController.obterMarcaListing}" 
+					  update="itMarca"/>
+				</p:commandLink>
+				<p:inputText id="itMarca" value="#{carroController.entity.marca.nome}"/>                
 				
 			</h:panelGrid>
 			<f:facet name="footer">

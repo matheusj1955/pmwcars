@@ -64,6 +64,14 @@ public class Carro extends DefaultEntity<Carro> {
 		this.ano = ano;
 	}
 
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
 
 	
 //	private Date senha;

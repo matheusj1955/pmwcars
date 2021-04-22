@@ -7,6 +7,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import br.unitins.pmwcars.application.RepositoryException;
+import br.unitins.pmwcars.application.Util;
 import br.unitins.pmwcars.model.Funcionario;
 import br.untinis.pmwcars.repository.FuncionarioRepository;
 
@@ -34,12 +35,33 @@ public class FuncionarioController extends Controller<Funcionario> {
 		}
 	}
 	
+	@Override
+	public void salvar() {
+		FuncionarioRepository repo = new FuncionarioRepository();
+		try {
+			repo.beginTransaction();
+			repo.save(getEntity());
+			repo.commitTransaction();
+			Util.addInfoMessage("Operação realizada com sucesso.");
+			limpar();
+		} catch (RepositoryException e) {
+			repo.rollbackTransaction();
+			System.out.println("Erro ao salvar.");
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
+		}
+		
+	}
+	
 	public List<Funcionario> getListaFuncionario() {
 		if (listaFuncionario==null)
 			listaFuncionario = new ArrayList<Funcionario>();
 		return listaFuncionario;
 	}
 
-
+	public void setListaFuncionario(List<Funcionario> listaFuncionario) {
+		this.listaFuncionario = listaFuncionario;
+	}
+	
 
 }

@@ -22,13 +22,30 @@
 			<h:panelGrid columns="2">
 			
 				<p:commandLink value="Nome: " onclick="PF('dlg').show()"/>
-				<p:inputText value="#{funcionarioController.entity.nome}"/>
+				<p:inputText value="#{pessoaController.entity.nome}"/>
 			
-				<p:outputLabel value="Login: "/>
-				<p:inputText value="#{funcionarioController.entity.login}"/>
+				<p:outputLabel value="Email: "/>
+				<p:inputText value="#{pessoaController.entity.email}"/>
+			
+				<h:outputLabel value="Ano: " />
+				<p:inputText id="itData" value="#{pessoaController.entity.nascimento}" 
+					converterMessage="Erro ao converter a data">
+					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
+				</p:inputText>
+                
+               	<p:outputLabel value="Cpf: "/>
+				<p:inputText value="#{pessoaFisicaController.entity.cpf}"/>
+				
+           	    <p:outputLabel value="Salario: "/>
+                <p:inputNumber value="#{funcionarioController.entity.salario}" modifyValueOnWheel="false" />
+                
+               	<p:outputLabel value="Login: "/>
+				<p:inputText value="#{usuarioController.entity.login}"/>
 			
 				<p:outputLabel value="Senha: "/>
-				<p:inputText value="#{funcionarioController.entity.senha}"/>
+				<p:inputText value="#{usuarioController.entity.senha}"/>
+			
+			
 				
 			</h:panelGrid>
 			<f:facet name="footer">

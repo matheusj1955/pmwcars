@@ -8,12 +8,13 @@ import javax.persistence.Query;
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.model.DefaultEntity;
+import br.unitins.pmwcars.model.Marca;
 import br.unitins.pmwcars.model.Usuario;
 
 public class UsuarioRepository extends Repository<Usuario> {
 
 	public UsuarioRepository() {
-		super(JPAUtil.getEntityManager());
+		super();
 	}
 	
 	public UsuarioRepository(EntityManager em) {

@@ -10,31 +10,32 @@ import javax.persistence.EntityManager;
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.application.Util;
-import br.unitins.pmwcars.model.Pessoa;
-import br.unitins.pmwcars.model.PessoaFisica;
-import br.untinis.pmwcars.repository.PessoaRepository;
+import br.unitins.pmwcars.model.Marca;
+import br.untinis.pmwcars.repository.MarcaRepository;
+
 
 @Named
 @ViewScoped
-public class PessoaController extends Controller<Pessoa>{
+public class MarcaController extends Controller<Marca>{
 
-	private static final long serialVersionUID = 1401821123737357649L;
-	////////// pessoa
-	
-	private List<Pessoa> listaPessoa;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5044487020385226027L;
+	private List<Marca> listaMarca;
 
 	@Override
-	public Pessoa getEntity() {
+	public Marca getEntity() {
 		if (entity == null)
-			entity = new Pessoa(); //////////////
+			entity = new Marca(); //////////////
 		return entity;
 	}
 
 	public void pesquisar() {
 		System.out.println("Pesquisar");
-		PessoaRepository repo = new PessoaRepository();
+		MarcaRepository repo = new MarcaRepository();
 		try {
-			listaPessoa = repo.findAll();
+			listaMarca = repo.findAll();
 		} catch (RepositoryException e) {
 			
 		}
@@ -43,7 +44,7 @@ public class PessoaController extends Controller<Pessoa>{
 	
 	@Override
 	public void salvar() {
-		PessoaRepository repo = new PessoaRepository();
+		MarcaRepository repo = new MarcaRepository();
 		try {
 			repo.beginTransaction();
 			repo.save(getEntity());
@@ -60,27 +61,26 @@ public class PessoaController extends Controller<Pessoa>{
 	}
 
 
-	public void pesquisarPessoa() {
+	public void pesquisarMarca() {
 		EntityManager em = JPAUtil.getEntityManager();
-		PessoaRepository repo = new PessoaRepository();
+		MarcaRepository repo = new MarcaRepository();
 		try {
-			setListaPessoa(repo.findAll());
+			setListaMarca(repo.findAll());
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			Util.addErrorMessage("Problema ao excluir.");
-			setListaPessoa(null);
+			setListaMarca(null);
 		}
 	}
 	
-	public List<Pessoa> getListaPessoa() {
-		if (listaPessoa == null)
-			listaPessoa = new ArrayList<Pessoa>();
-		return listaPessoa;
+	public List<Marca> getListaMarca() {
+		if (listaMarca == null)
+			listaMarca = new ArrayList<Marca>();
+		return listaMarca;
 	}
 
-	public void setListaPessoa(List<Pessoa> listaPessoa) {
-		this.listaPessoa = listaPessoa;
+	public void setListaMarca(List<Marca> listaMarca) {
+		this.listaMarca = listaMarca;
 	}
 	
-
 }
