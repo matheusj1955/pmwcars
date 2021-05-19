@@ -28,8 +28,21 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 //	@ManyToOne
 //	@JoinColumn(name="idtipo", nullable = false)
 //	private TipoFuncionario tipofuncionario;
+
+	@ManyToOne
+	@JoinColumn(name = "id_municipio")
+	private Municipio municipio;
 	
 	
+	
+	public Municipio getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
+	}
+
 	public PessoaFisica getPessoaFisica() {
 		return pessoaFisica;
 	}
@@ -46,4 +59,9 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 		this.salario = salario;
 	}
 
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + getId() + ", cpf=" + pessoaFisica.getCpf() + ", nome=" + pessoaFisica.getNome() + "]";
+	}
+	
 }

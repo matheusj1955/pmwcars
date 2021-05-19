@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui" >
 	
 <h:head>
-	<title>Consulta de Estado</title>
+	<title>Consulta de Funcionario</title>
 </h:head>
 
 <h:body>	
@@ -29,10 +29,10 @@
 								<div class="card card-w-title">
 		                            <div class="ui-inputgroup">
 		                                <p:inputText id="itFiltro" 
-		                                	value="#{estadoListing.filtro}"
-		                                	placeholder="Informe o nome do estado ..." />        
+		                                	value="#{funcionarioListing.filtro}"
+		                                	placeholder="Informe o nome do funcionario ..." />        
 		                                <p:commandButton value="Pesquisar"
-											actionListener="#{estadoListing.pesquisar}"
+											actionListener="#{funcionarioListing.pesquisar}"
 											process="@this itFiltro" update="dtListagem" /> 
 		                            </div>
 			                    </div>
@@ -50,25 +50,31 @@
 								var="entity" rowIndexVar="row"
 								paginator="false"
 								reflow="true"
-								value="#{estadoListing.list}">
+								value="#{funcionarioListing.list}">
 								<p:column headerText="N." style="width: 30px; text-align: center;">
 									<h:outputText value="#{row + 1}" />
 								</p:column>
-			
-								<p:column headerText="Nome">
-									<p:commandLink value="#{entity.nome}"
-										actionListener="#{estadoListing.select(entity.id)}"
+								
+								<p:column headerText="CPF">
+									<p:commandLink value="#{entity.pessoaFisica.cpf}"
+										actionListener="#{funcionarioListing.select(entity.id)}"
 										process="@this" update="@form"/>
 								</p:column>
-								
-								<p:column headerText="Sigla">
-									<p:commandLink value="#{entity.sigla}"
-										actionListener="#{estadoListing.select(entity.id)}"
+			
+								<p:column headerText="Nome">
+									<p:commandLink value="#{entity.pessoaFisica.nome}"
+										actionListener="#{funcionarioListing.select(entity.id)}"
+										process="@this" update="@form"/>
+								</p:column>
+			
+								<p:column headerText="Município">
+									<p:commandLink value="#{entity.municipio.nome} - #{entity.municipio.estado.sigla}"
+										actionListener="#{funcionarioListing.select(entity.id)}"
 										process="@this" update="@form"/>
 								</p:column>
 								
 								<f:facet name="footer">
-							        Total de #{estadoListing.list.size()} Estados.
+							        Total de #{funcionarioListing.list.size()} Funcionarios.
 							    </f:facet>
 							</p:dataTable>
 						</div>

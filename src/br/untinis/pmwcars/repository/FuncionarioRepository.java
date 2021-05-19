@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.model.Funcionario;
+import br.unitins.pmwcars.model.PessoaFisica;
 
 public class FuncionarioRepository extends Repository<Funcionario> {
 
@@ -20,44 +21,57 @@ public class FuncionarioRepository extends Repository<Funcionario> {
 	}
 	
 
-	public List<Funcionario> findAll() throws RepositoryException{ 
-		
+	public Funcionario findByPessoaFisica(PessoaFisica pessoaFisica) throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
-		jpql.append(" u ");
+		jpql.append(" p ");
 		jpql.append("FROM ");
-		jpql.append(" Funcionario u ");
-		jpql.append("ORDER BY u.funcionario.nome ");
+		jpql.append(" Funcionario p ");
+		jpql.append("WHERE ");
+		jpql.append(" p.pessoaFisica.id = :id ");
 		
 		Query query = em.createQuery(jpql.toString());
+		query.setParameter("id", pessoaFisica.getId());
+		
+		Funcionario funcionario = null;
+		try {
+			funcionario = (Funcionario) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return funcionario;
+	}
+	
+	public List<Funcionario> findByNome(String nome) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" p ");
+		jpql.append("FROM ");
+		jpql.append(" Funcionario p ");
+		jpql.append("WHERE ");
+		jpql.append(" UPPER(p.pessoaFisica.nome) LIKE UPPER(:nome) ");
+		jpql.append("ORDER BY p.pessoaFisica.nome ");
+		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("nome", "%" + nome + "%");
+		
 		return query.getResultList();
 	}
 	
-	public Funcionario findFuncionario(String login, String senha) throws RepositoryException{ 
+	public List<Funcionario> findAll() throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" p ");
+		jpql.append("FROM ");
+		jpql.append(" Funcionario p ");
+		jpql.append("ORDER BY p.pessoaFisica.nome ");
 		
-		try {
-			EntityManager em = getEntityManager();
-			StringBuffer jpql = new StringBuffer();
-			jpql.append("SELECT ");
-			jpql.append("  u ");
-			jpql.append("FROM ");
-			jpql.append("  Funcionario u ");
-			jpql.append("WHERE ");
-			jpql.append("  u.login = :login ");
-			jpql.append("  AND u.senha = :senha ");
-			
-			Query query = em.createQuery(jpql.toString());
-			query.setParameter("login", login);
-			query.setParameter("senha", senha);
-			
-			return (Funcionario) query.getSingleResult();
-			
-		} catch (Exception e) {
-			System.out.println("Erro ao realizar uma consulta ao banco.");
-			e.printStackTrace();
-			return null;
-		}
-		
+		Query query = em.createQuery(jpql.toString());
+		return query.getResultList();
+		 
 	}
 }

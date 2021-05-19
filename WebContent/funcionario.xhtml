@@ -5,42 +5,56 @@
 	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
 
 <ui:define name="content">
-
-<h:body>
-
-		<p:ajaxStatus onstart="PF('statusDialog').show()"
-			onsuccess="PF('statusDialog').hide()" />
-			
-		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-			closable="false" resizable="false" showHeader="false">
-			<p:graphicImage name="/images/processando.gif" />
-		</p:dialog>
-
 	<h:form>
  		<p:growl id="growl" showDetail="true" />
-		<p:panel header="Cadastro de Funcionário" >
+		<p:panel header="Cadastro de Funcionario" >
 			<h:panelGrid columns="2">
 			
-				<h:outputLabel value="Nome: "/>
-				<p:inputText value="#{funcionarioController.entity.pessoaFisica.nome}"/>
-				<p:outputLabel value="Email: "/>
+				<p:commandLink value="CPF: " 
+					actionListener="#{funcionarioController.abrirPessoaFisicaListing}"
+					process="@this" update="@none">
+					 <p:ajax event="dialogReturn" listener="#{funcionarioController.obterPessoaFisicaListing}" 
+					  update="@form"/>
+				</p:commandLink>
+				<p:inputMask 
+					id="itcpf" 
+					validateMask="true"
+					mask="999.999.999-99"
+					value="#{funcionarioController.entity.pessoaFisica.cpf}"
+					disabled="#{funcionarioController.entity.id != null}" >
+					<p:ajax event="blur" update="@form" process="@this" listener="#{funcionarioController.buscarPessoaFisica}"/>
+				</p:inputMask>
+				
+				<p:outputLabel value="Nome: " />
+				<p:inputText id="itnome" value="#{funcionarioController.entity.pessoaFisica.nome}"
+							 disabled="#{funcionarioController.entity.id == null}" />
+							 
+ 				<p:outputLabel value="Email: "/>
 				<p:inputText value="#{funcionarioController.entity.pessoaFisica.email}"/>
-			
+				
+           	    <p:outputLabel value="Salario: "/>
+                <p:inputNumber value="#{funcionarioController.entity.salario}" modifyValueOnWheel="false" />
+                
 				<h:outputLabel value="Ano: " />
 				<p:inputText id="itData" value="#{funcionarioController.entity.pessoaFisica.nascimento}" 
 					converterMessage="Erro ao converter a data">
 					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
 				</p:inputText>
-                
-               	<p:outputLabel value="Cpf: "/>
-				<p:inputText value="#{funcionarioController.entity.pessoaFisica.cpf}"/>
 				
-           	    <p:outputLabel value="Salario: "/>
-                <p:inputNumber value="#{funcionarioController.entity.salario}" modifyValueOnWheel="false" />
-                
-
-			
-			
+                <p:outputLabel value="Município: " />
+                <p:autoComplete id="acMunicipio" 
+                				value="#{funcionarioController.entity.municipio}"
+                				placeholder="Informe a cidade ..."
+                				forceSelection="true"
+                				dropdown="true"
+                				minQueryLength="1"
+                				moreText="Existem mais cidades ..."
+                				maxResults="4"
+                				var="obj"
+                				itemLabel="#{obj.nome}"
+                				itemValue="#{obj}"
+                            	completeMethod="#{funcionarioController.completeMunicipio}" 
+                            	scrollHeight="250"/>				
 				
 			</h:panelGrid>
 			<f:facet name="footer">
@@ -55,7 +69,11 @@
 					icon="far fa-trash-alt"
 					actionListener="#{funcionarioController.excluir}"
 					process="@this @form"
-					update="@form"/>
+					update="@form">
+					<p:confirm header="Confirmação" 
+						message="Deseja excluir o funcionario ?" 
+						icon="pi pi-info-circle"/>
+				</p:commandButton>
 				<p:commandButton 
 					value="Limpar"
 					icon="fas fa-eraser"
@@ -64,8 +82,6 @@
 					update="@form"/>
 			</f:facet>
 		</p:panel>
-		
 	</h:form>
-	</h:body>
 </ui:define>
 </ui:composition>

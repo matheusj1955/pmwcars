@@ -9,8 +9,6 @@ import org.primefaces.PrimeFaces;
 
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.model.DefaultEntity;
-import br.unitins.pmwcars.model.Estado;
-import br.untinis.pmwcars.repository.EstadoRepository;
 import br.untinis.pmwcars.repository.Repository;
 
 public abstract class Listing<T extends DefaultEntity<? super T>> implements Serializable {
@@ -58,6 +56,5 @@ public abstract class Listing<T extends DefaultEntity<? super T>> implements Ser
 	public void setList(List<T> list) {
 		this.list = list;
 	}
-
 
 }

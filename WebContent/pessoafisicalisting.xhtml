@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui" >
 	
 <h:head>
-	<title>Consulta de Estado</title>
+	<title>Consulta de Pessoa Física</title>
 </h:head>
 
 <h:body>	
@@ -29,10 +29,10 @@
 								<div class="card card-w-title">
 		                            <div class="ui-inputgroup">
 		                                <p:inputText id="itFiltro" 
-		                                	value="#{estadoListing.filtro}"
-		                                	placeholder="Informe o nome do estado ..." />        
+		                                	value="#{pessoaFisicaListing.filtro}"
+		                                	placeholder="Informe o nome da pessoa física ..." />        
 		                                <p:commandButton value="Pesquisar"
-											actionListener="#{estadoListing.pesquisar}"
+											actionListener="#{pessoaFisicaListing.pesquisar}"
 											process="@this itFiltro" update="dtListagem" /> 
 		                            </div>
 			                    </div>
@@ -50,25 +50,25 @@
 								var="entity" rowIndexVar="row"
 								paginator="false"
 								reflow="true"
-								value="#{estadoListing.list}">
+								value="#{pessoaFisicaListing.list}">
 								<p:column headerText="N." style="width: 30px; text-align: center;">
 									<h:outputText value="#{row + 1}" />
+								</p:column>
+								
+								<p:column headerText="CPF">
+									<p:commandLink value="#{entity.cpf}"
+										actionListener="#{pessoaFisicaListing.select(entity.id)}"
+										process="@this" update="@form"/>
 								</p:column>
 			
 								<p:column headerText="Nome">
 									<p:commandLink value="#{entity.nome}"
-										actionListener="#{estadoListing.select(entity.id)}"
+										actionListener="#{pessoaFisicaListing.select(entity.id)}"
 										process="@this" update="@form"/>
 								</p:column>
-								
-								<p:column headerText="Sigla">
-									<p:commandLink value="#{entity.sigla}"
-										actionListener="#{estadoListing.select(entity.id)}"
-										process="@this" update="@form"/>
-								</p:column>
-								
+			
 								<f:facet name="footer">
-							        Total de #{estadoListing.list.size()} Estados.
+							        Total de #{pessoaFisicaListing.list.size()} Pessoas Físicas.
 							    </f:facet>
 							</p:dataTable>
 						</div>
