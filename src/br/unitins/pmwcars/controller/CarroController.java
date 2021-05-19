@@ -54,7 +54,5 @@ public class CarroController extends  Controller<Carro>{
 	public void obterMarcaListing(SelectEvent<Marca> event) {
 		getEntity().setMarca(event.getObject());
 	}
-
-	
 	
 }

@@ -15,8 +15,7 @@ public class MarcaListing extends Listing<Marca> {
 
 	
 	private static final long serialVersionUID = -4351447665082066449L;
-	
-private String filtro;
+	private String filtro;
 	
 	public MarcaListing() {
 		super("marcalisting", new MarcaRepository());

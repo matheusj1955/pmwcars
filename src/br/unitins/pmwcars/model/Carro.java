@@ -28,7 +28,7 @@ public class Carro extends DefaultEntity<Carro> {
 //	private Modelo modelo;
 	
 	@ManyToOne
-	@JoinColumn(name="idmarca", nullable = false)
+//	@JoinColumn(name="idmarca", nullable = false)
 	private Marca marca;
 	
 //	@ManyToOne
@@ -71,9 +71,5 @@ public class Carro extends DefaultEntity<Carro> {
 	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
-
-
-	
-//	private Date senha;
 
 }

@@ -8,7 +8,7 @@ import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.model.DefaultEntity;
 
-public class Repository<T extends DefaultEntity<T>> {
+public class Repository<T extends DefaultEntity<? super T>> {
 
 	protected EntityManager entityManager = null;
 
@@ -93,5 +93,4 @@ public class Repository<T extends DefaultEntity<T>> {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-
 }

@@ -57,24 +57,23 @@
 					</div>
 				</div>
 				
-				<p:dialog id="dialog"  header="Cadastro de Marcas" widgetVar="dlg" 
-				height="50" width="350" 
-				showEffect="fade" modal="true">
-				
-				<p:outputLabel value="Nome: "/>
-				<p:inputText value="#{marcaController.entity.nome}"/>
+			</p:panel>
 			
-				<p:commandButton 
-					value="Salvar" 
+				<p:dialog id="dialog"  header="Cadastro Marca" widgetVar="dlg" 
+				height="60" width="350" 
+				showEffect="fade" modal="true">
+			
+				<p:outputLabel value="Senha: "/>
+				<p:inputText value="#{marcaController.entity.nome}"/>
+				
+				<p:commandButton value="Salvar" 
 					icon="far fa-save"
 					actionListener="#{marcaController.salvar}"
 					process="@this @form"
 					update="@form"/>
 						
-				
 			</p:dialog>
-				
-			</p:panel>
+			
 
 		</h:form>
 </ui:define>

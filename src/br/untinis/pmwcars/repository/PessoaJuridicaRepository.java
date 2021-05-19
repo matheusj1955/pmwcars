@@ -7,49 +7,25 @@ import javax.persistence.Query;
 
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
-import br.unitins.pmwcars.model.PessoaFisica;
+import br.unitins.pmwcars.model.PessoaJuridica;
 
-public class PessoaFisicaRepository extends Repository<PessoaFisica> {
+public class PessoaJuridicaRepository extends Repository<PessoaJuridica> {
 	
-	public PessoaFisicaRepository() {
+	public PessoaJuridicaRepository() {
 		super(JPAUtil.getEntityManager());
 	}
 	
-	public PessoaFisicaRepository(EntityManager em) {
+	public PessoaJuridicaRepository(EntityManager em) {
 		super(em);
 	}
 	
-	public PessoaFisica findByCpf(String cpf) throws RepositoryException {
+	public List<PessoaJuridica> findByNome(String nome) throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append(" p ");
 		jpql.append("FROM ");
-		jpql.append(" PessoaFisica p ");
-		jpql.append("WHERE ");
-		jpql.append(" p.cpf = :cpf ");
-		
-		Query query = em.createQuery(jpql.toString());
-		query.setParameter("cpf", cpf);
-		
-		PessoaFisica pf = null;
-		try {
-			pf = (PessoaFisica) query.getSingleResult();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return pf;
-	}
-	
-	
-	public List<PessoaFisica> findByNome(String nome) throws RepositoryException {
-		EntityManager em = getEntityManager();
-		StringBuffer jpql = new StringBuffer();
-		jpql.append("SELECT ");
-		jpql.append(" p ");
-		jpql.append("FROM ");
-		jpql.append(" PessoaFisica p ");
+		jpql.append(" PessoaJuridica p ");
 		jpql.append("WHERE ");
 		jpql.append(" UPPER(p.nome) LIKE UPPER(:nome) ");
 		jpql.append("ORDER BY p.nome ");
@@ -60,13 +36,13 @@ public class PessoaFisicaRepository extends Repository<PessoaFisica> {
 		return query.getResultList();
 	}
 	
-	public List<PessoaFisica> findAll() throws RepositoryException {
+	public List<PessoaJuridica> findAll() throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append(" p ");
 		jpql.append("FROM ");
-		jpql.append(" PessoaFisica p ");
+		jpql.append(" PessoaJuridica p ");
 		jpql.append("ORDER BY p.nome ");
 		
 		Query query = em.createQuery(jpql.toString());

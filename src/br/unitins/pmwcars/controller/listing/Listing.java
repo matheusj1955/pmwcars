@@ -13,9 +13,9 @@ import br.unitins.pmwcars.model.Estado;
 import br.untinis.pmwcars.repository.EstadoRepository;
 import br.untinis.pmwcars.repository.Repository;
 
-public abstract class Listing<T extends DefaultEntity<T>> implements Serializable {
+public abstract class Listing<T extends DefaultEntity<? super T>> implements Serializable {
 
-	private static final long serialVersionUID = 3137547480654871438L;
+	private static final long serialVersionUID = 7641180780489288293L;
 	private String page;
 	private Repository<T> repository;
 	private List<T> list;
@@ -58,5 +58,6 @@ public abstract class Listing<T extends DefaultEntity<T>> implements Serializabl
 	public void setList(List<T> list) {
 		this.list = list;
 	}
+
 
 }

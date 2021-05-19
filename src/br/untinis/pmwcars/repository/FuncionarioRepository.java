@@ -19,31 +19,30 @@ public class FuncionarioRepository extends Repository<Funcionario> {
 		super(em);
 	}
 	
+
 	public List<Funcionario> findAll() throws RepositoryException{ 
 		
-		try {
-			EntityManager em = JPAUtil.getEntityManager();
-			Query query = em.createQuery("SELECT u FROM Funcionario u ORDER BY u.nome ");
-			
-			return query.getResultList();
-		} catch (Exception e) {
-			System.out.println("Erro ao realizar uma consulta ao banco.");
-			e.printStackTrace();
-			throw new RepositoryException("Erro ao realizar uma consulta ao banco.");
-		}
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" u ");
+		jpql.append("FROM ");
+		jpql.append(" Funcionario u ");
+		jpql.append("ORDER BY u.funcionario.nome ");
 		
+		Query query = em.createQuery(jpql.toString());
+		return query.getResultList();
 	}
 	
 	public Funcionario findFuncionario(String login, String senha) throws RepositoryException{ 
 		
 		try {
-			EntityManager em = JPAUtil.getEntityManager();
-			
+			EntityManager em = getEntityManager();
 			StringBuffer jpql = new StringBuffer();
 			jpql.append("SELECT ");
 			jpql.append("  u ");
 			jpql.append("FROM ");
-			jpql.append("  Usuario u ");
+			jpql.append("  Funcionario u ");
 			jpql.append("WHERE ");
 			jpql.append("  u.login = :login ");
 			jpql.append("  AND u.senha = :senha ");

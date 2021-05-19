@@ -7,52 +7,52 @@ import javax.persistence.Query;
 
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
+import br.unitins.pmwcars.model.Cliente;
 import br.unitins.pmwcars.model.PessoaFisica;
 
-public class PessoaFisicaRepository extends Repository<PessoaFisica> {
+public class ClienteRepository extends Repository<Cliente> {
 	
-	public PessoaFisicaRepository() {
+	public ClienteRepository() {
 		super(JPAUtil.getEntityManager());
 	}
 	
-	public PessoaFisicaRepository(EntityManager em) {
+	public ClienteRepository(EntityManager em) {
 		super(em);
 	}
 	
-	public PessoaFisica findByCpf(String cpf) throws RepositoryException {
+	public Cliente findByPessoaFisica(PessoaFisica pessoaFisica) throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append(" p ");
 		jpql.append("FROM ");
-		jpql.append(" PessoaFisica p ");
+		jpql.append(" Cliente p ");
 		jpql.append("WHERE ");
-		jpql.append(" p.cpf = :cpf ");
+		jpql.append(" p.pessoaFisica.id = :id ");
 		
 		Query query = em.createQuery(jpql.toString());
-		query.setParameter("cpf", cpf);
+		query.setParameter("id", pessoaFisica.getId());
 		
-		PessoaFisica pf = null;
+		Cliente cliente = null;
 		try {
-			pf = (PessoaFisica) query.getSingleResult();
+			cliente = (Cliente) query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return pf;
+		return cliente;
 	}
 	
-	
-	public List<PessoaFisica> findByNome(String nome) throws RepositoryException {
+	public List<Cliente> findByNome(String nome) throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append(" p ");
 		jpql.append("FROM ");
-		jpql.append(" PessoaFisica p ");
+		jpql.append(" Cliente p ");
 		jpql.append("WHERE ");
-		jpql.append(" UPPER(p.nome) LIKE UPPER(:nome) ");
-		jpql.append("ORDER BY p.nome ");
+		jpql.append(" UPPER(p.pessoaFisica.nome) LIKE UPPER(:nome) ");
+		jpql.append("ORDER BY p.pessoaFisica.nome ");
 		
 		Query query = em.createQuery(jpql.toString());
 		query.setParameter("nome", "%" + nome + "%");
@@ -60,14 +60,14 @@ public class PessoaFisicaRepository extends Repository<PessoaFisica> {
 		return query.getResultList();
 	}
 	
-	public List<PessoaFisica> findAll() throws RepositoryException {
+	public List<Cliente> findAll() throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append(" p ");
 		jpql.append("FROM ");
-		jpql.append(" PessoaFisica p ");
-		jpql.append("ORDER BY p.nome ");
+		jpql.append(" Cliente p ");
+		jpql.append("ORDER BY p.pessoaFisica.nome ");
 		
 		Query query = em.createQuery(jpql.toString());
 		return query.getResultList();

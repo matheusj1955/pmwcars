@@ -1,5 +1,6 @@
 package br.unitins.pmwcars.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -15,14 +16,13 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 
 	private double salario;
 
-	@OneToOne
-	@JoinColumn(unique = true, name="idusuario", nullable = false)
-	//@PrimaryKeyJoinColumn
-	private Usuario usuario;
+//	@OneToOne
+//	@JoinColumn(unique = true, name="idusuario", nullable = false)
+//	//@PrimaryKeyJoinColumn
+//	private Usuario usuario;
 	
-	@OneToOne
-	@JoinColumn(unique = true, name="idpessoafisica", nullable = false)
-	//@PrimaryKeyJoinColumn
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(name = "id_pessoafisica", unique = true)
 	private PessoaFisica pessoaFisica;
 	
 //	@ManyToOne

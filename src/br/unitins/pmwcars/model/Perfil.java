@@ -1,7 +1,6 @@
 package br.unitins.pmwcars.model;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public enum Perfil {
 
@@ -26,14 +25,18 @@ public enum Perfil {
 		return label;
 	}
 	
+	@SuppressWarnings("unused")
 	public static Perfil valueOf(Integer id) {
 		if (id == null)
 			return null;
 		
-		for (Perfil dep : Perfil.values()) {
-			if (dep.getId() == id)
-				return dep;
-		}
+		for (Perfil perfil : Perfil.values()) {
+			if (perfil.id == id)
+				return perfil;
+		} 
+		
 		return null;
-	}	
+
+	}
+
 }

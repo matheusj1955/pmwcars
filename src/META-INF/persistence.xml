@@ -4,6 +4,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 	<persistence-unit name="Pmwcars">
+		<class>br.unitins.pmwcars.converter.jpa.PerfilConverter</class>
 		<class>br.unitins.pmwcars.model.Carro</class>
 		<class>br.unitins.pmwcars.model.Cidade</class>
 		<class>br.unitins.pmwcars.model.Cliente</class>
@@ -14,6 +15,7 @@
 		<class>br.unitins.pmwcars.model.Garagem</class>
 		<class>br.unitins.pmwcars.model.ItemVenda</class>
 		<class>br.unitins.pmwcars.model.Marca</class>
+		<class>br.unitins.pmwcars.model.Municipio</class>
 		<class>br.unitins.pmwcars.model.Pagamento</class>
 		<class>br.unitins.pmwcars.model.Pessoa</class>
 		<class>br.unitins.pmwcars.model.PessoaFisica</class>
@@ -45,7 +47,7 @@
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 
 			<!-- create / create-drop / update -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 
 			<!-- Show SQL in console -->
 			<property name="hibernate.show_sql" value="true" />
