@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+	<h:form>
+ 		<p:growl id="growl" showDetail="true" />
+		<p:panel header="Fale conosco" >
+		
+			<h:panelGrid columns="2">
+			
+				<h:outputLabel value="Nome: " />
+				<p:inputText style="width: 250px;" value="#{pessoaController.entity.nome}"/>
+			
+				<p:outputLabel value="Email:  "/>
+				<p:inputText style="width: 250px;" value="#{pessoaController.entity.email}"/>
+
+				<p:outputLabel value="Assunto:  "/>
+				<p:inputText style="width: 250px;" value="#{pessoaController.entity.email}"/>
+
+				<p:outputLabel value="Mensagem:  "/>
+				<p:inputTextarea style="width: 600px; height:200px" value="#{pessoaController.entity.email}"/>
+			
+			</h:panelGrid>
+		
+			<f:facet name="footer">
+				<p:commandButton 
+					value="Enviar" 
+					icon="far fa-paper-plane"
+					actionListener="#{pessoaController.salvar}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Cancelar" 
+					icon="fas fa-times"
+					actionListener="#{usuarioController.excluir}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Limpar"
+					icon="fas fa-eraser"
+					actionListener="#{usuarioController.limpar}"
+					process="@this"
+					update="@form"/>
+			</f:facet>
+			
+		</p:panel>
+	</h:form>
+</ui:define>
+</ui:composition>

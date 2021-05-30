@@ -2,8 +2,7 @@ package br.unitins.pmwcars.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -15,6 +14,8 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 	private static final long serialVersionUID = -3041430973972680691L;
 
 	private double salario;
+
+	private Perfil perfil;
 
 //	@OneToOne
 //	@JoinColumn(unique = true, name="idusuario", nullable = false)
@@ -29,7 +30,7 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 //	@JoinColumn(name="idtipo", nullable = false)
 //	private TipoFuncionario tipofuncionario;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_municipio")
 	private Municipio municipio;
 	
@@ -57,6 +58,15 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 
 	public void setSalario(double salario) {
 		this.salario = salario;
+	}
+	
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 
 	@Override

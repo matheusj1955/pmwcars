@@ -2,8 +2,13 @@ package br.unitins.pmwcars.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
@@ -16,9 +21,34 @@ public class Usuario extends DefaultEntity<Usuario> {
 	private String senha;
 	
 	private Perfil perfil;
+	
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_pessoafisica", unique = true)
+	private PessoaFisica pessoaFisica;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_municipio")
+	private Municipio municipio;
+	
+	
 
-	@OneToMany
+	public PessoaFisica getPessoaFisica() {
+		return pessoaFisica;
+	}
+
+	public void setPessoaFisica(PessoaFisica pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
+	}
+
+	public Municipio getMunicipio() {
+		return municipio;
+	}
+
+	public void setMunicipio(Municipio municipio) {
+		this.municipio = municipio;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Telefone> listatelefone;
 	
 	//é necessario essa ligação com funcionario?

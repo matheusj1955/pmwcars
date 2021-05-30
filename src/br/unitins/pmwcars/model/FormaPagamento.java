@@ -2,6 +2,7 @@ package br.unitins.pmwcars.model;
 
 import java.util.List;
 
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 public enum FormaPagamento {
@@ -11,7 +12,7 @@ public enum FormaPagamento {
 	DEBITO(1, "Debito"),
 	CREDITO(1, "Credito");
 	
-	@OneToMany(mappedBy = "formapagamento")
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Pagamento> listapagamento;
 	
 	private int id;

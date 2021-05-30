@@ -3,6 +3,7 @@ package br.unitins.pmwcars.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -13,7 +14,7 @@ public class Marca  extends DefaultEntity<Marca>{
 	private static final long serialVersionUID = 5630456718670379495L;
 	private String nome;
 	
-	@OneToMany(mappedBy = "marca")
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Carro> listacarro;
 
 	

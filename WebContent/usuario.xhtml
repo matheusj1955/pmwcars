@@ -21,24 +21,73 @@
 		<p:panel header="Cadastro de Usuario" >
 			<h:panelGrid columns="2">
 			
-				<h:outputLabel value="Nome: " />
-				<p:inputText value="#{pessoaController.entity.nome}"/>
+				<p:commandLink value="CPF: " 
+					actionListener="#{usuarioController.abrirPessoaFisicaListing}"
+					process="@this" update="@none">
+					 <p:ajax event="dialogReturn" listener="#{usuarioController.obterPessoaFisicaListing}" 
+					  update="@form"/>
+				</p:commandLink>
+				<p:inputText value="#{usuarioController.entity.pessoaFisica.cpf}"
+							 disabled="true"/>
+	
+				<p:outputLabel value="Nome: "/>
+				<p:inputText value="#{usuarioController.entity.pessoaFisica.nome}"
+							 />
 			
+				<p:outputLabel value="Login: "/>
+				<p:inputText value="#{usuarioController.entity.login}"/>
+			
+				<p:outputLabel value="Senha: "/>
+				<p:inputText value="#{usuarioController.entity.senha}"/>
+	
 				<p:outputLabel value="Email: "/>
-				<p:inputText value="#{pessoaController.entity.email}"/>
-			
-				<h:outputLabel value="Ano: " />
-				<p:inputText id="itData" value="#{pessoaController.entity.nascimento}" 
-					converterMessage="Erro ao converter a data">
-					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
-				</p:inputText>
+				<p:inputText value="#{usuarioController.entity.pessoaFisica.email}"/>
+							
+ 				<p:outputLabel value="Perfil: "/>
+				<p:selectOneMenu 
+					value="#{usuarioController.entity.perfil}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{usuarioController.listaPerfil}"
+						var="obj"
+						itemLabel="#{obj.label}"
+						itemValue="#{obj}"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Estado: "/>
+				<p:selectOneMenu 
+					value="#{usuarioController.estado}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{usuarioController.listaEstado}"
+						var="obj"
+						itemLabel="#{obj.nome} - #{obj.sigla}"
+						itemValue="#{obj}"/>
+					<p:ajax event="change" 
+						process="@this" 
+						update="somMunicipio" 
+						listener="#{usuarioController.filtrarMunicipios}"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Município: "/>
+				<p:selectOneMenu 
+					id="somMunicipio"
+					value="#{usuarioController.entity.municipio}"
+					disabled="#{usuarioController.estado.id == null}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{usuarioController.listaMunicipio}"
+						var="obj"
+						itemLabel="#{obj.nome} - #{obj.estado.sigla}"
+						itemValue="#{obj}"/>
+				</p:selectOneMenu>
                 	
 			</h:panelGrid>
-			<f:facet name="footer">
+		<f:facet name="footer">
 				<p:commandButton 
 					value="Salvar" 
 					icon="far fa-save"
-					actionListener="#{pessoaController.salvar}"
+					actionListener="#{usuarioController.salvar}"
 					process="@this @form"
 					update="@form"/>
 				<p:commandButton 
@@ -54,6 +103,7 @@
 					process="@this"
 					update="@form"/>
 			</f:facet>
+
 		</p:panel>
 			
 	</h:form>

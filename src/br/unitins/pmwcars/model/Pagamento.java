@@ -3,6 +3,7 @@ package br.unitins.pmwcars.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -11,7 +12,7 @@ public class Pagamento extends DefaultEntity<Pagamento>{
 	
 	private static final long serialVersionUID = 656842782852629889L;
 	
-//	@ManyToOne
+//	@ManyToOne(fetch = FetchType.LAZY)
 //	@JoinColumn(name="idforma", nullable = false)
 //	private FormaPagamento forma;
 	

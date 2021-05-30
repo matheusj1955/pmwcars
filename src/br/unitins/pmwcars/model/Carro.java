@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.enterprise.inject.Model;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ public class Carro extends DefaultEntity<Carro> {
 	
 	private Date ano;
 
-	@OneToMany(mappedBy = "carro")
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<ItemVenda> listaitemvenda;
 	
 //	@ManyToOne

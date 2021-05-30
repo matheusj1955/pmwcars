@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+	<h:form>
+ 		<p:growl id="growl" showDetail="true" />
+		<p:panel header="Recuperar Senha" >
+		
+		<h:panelGrid columns="2">
+			
+				<h:outputLabel value="Codigo: " />
+				<p:inputText value="#{pessoaController.entity.nome}"/>
+			
+				<p:outputLabel value="Senha:  "/>
+				<p:inputText value="#{pessoaController.entity.email}"/>
+			
+				<h:outputLabel value="Confirmar senha: " />
+				<p:inputText id="itData" value="#{pessoaController.entity.nascimento}" 
+					converterMessage="Erro ao converter a data">
+					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
+				</p:inputText>
+                	
+			</h:panelGrid>
+			
+			<f:facet name="footer">
+				<p:commandButton 
+					value="Salvar" 
+					icon="far fa-save"
+					actionListener="#{pessoaController.salvar}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Cancelar" 
+					icon="fas fa-times"
+					actionListener="#{usuarioController.excluir}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Limpar"
+					icon="fas fa-eraser"
+					actionListener="#{usuarioController.limpar}"
+					process="@this"
+					update="@form"/>
+			</f:facet>
+		
+		</p:panel>
+		
+		
+	</h:form>
+</ui:define>
+</ui:composition>

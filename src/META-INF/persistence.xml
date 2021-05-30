@@ -19,6 +19,7 @@
 		<class>br.unitins.pmwcars.model.Pessoa</class>
 		<class>br.unitins.pmwcars.model.PessoaFisica</class>
 		<class>br.unitins.pmwcars.model.PessoaJuridica</class>
+		<class>br.unitins.pmwcars.model.RecuperarSenha</class>
 		<class>br.unitins.pmwcars.model.Telefone</class>
 		<class>br.unitins.pmwcars.model.Usuario</class>
 		<class>br.unitins.pmwcars.model.Venda</class>

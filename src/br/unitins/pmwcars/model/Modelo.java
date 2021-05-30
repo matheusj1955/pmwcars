@@ -2,6 +2,7 @@ package br.unitins.pmwcars.model;
 
 import java.util.List;
 
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 public enum Modelo {
@@ -9,7 +10,7 @@ public enum Modelo {
 	SEDAN(1, "Sedan"), 
 	HATCH(1, "Hatch");
 
-	@OneToMany(mappedBy = "modelo")
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Carro> listacarro;
 
 	private int id;

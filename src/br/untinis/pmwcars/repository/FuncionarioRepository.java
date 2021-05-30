@@ -19,7 +19,6 @@ public class FuncionarioRepository extends Repository<Funcionario> {
 	public FuncionarioRepository(EntityManager em) {
 		super(em);
 	}
-	
 
 	public Funcionario findByPessoaFisica(PessoaFisica pessoaFisica) throws RepositoryException {
 		EntityManager em = getEntityManager();

@@ -35,26 +35,50 @@
            	    <p:outputLabel value="Salario: "/>
                 <p:inputNumber value="#{funcionarioController.entity.salario}" modifyValueOnWheel="false" />
                 
-				<h:outputLabel value="Ano: " />
+				<h:outputLabel value="Nascimento: " />
 				<p:inputText id="itData" value="#{funcionarioController.entity.pessoaFisica.nascimento}" 
 					converterMessage="Erro ao converter a data">
 					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
 				</p:inputText>
+								
+				<p:outputLabel value="Perfil: "/>
+				<p:selectOneMenu 
+					value="#{funcionarioController.entity.perfil}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{funcionarioController.listaPerfil}"
+						var="obj"
+						itemLabel="#{obj.label}"
+						itemValue="#{obj}"/>
+				</p:selectOneMenu>
 				
-                <p:outputLabel value="Município: " />
-                <p:autoComplete id="acMunicipio" 
-                				value="#{funcionarioController.entity.municipio}"
-                				placeholder="Informe a cidade ..."
-                				forceSelection="true"
-                				dropdown="true"
-                				minQueryLength="1"
-                				moreText="Existem mais cidades ..."
-                				maxResults="4"
-                				var="obj"
-                				itemLabel="#{obj.nome}"
-                				itemValue="#{obj}"
-                            	completeMethod="#{funcionarioController.completeMunicipio}" 
-                            	scrollHeight="250"/>				
+				<p:outputLabel value="Estado: "/>
+				<p:selectOneMenu 
+					value="#{funcionarioController.estado}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{funcionarioController.listaEstado}"
+						var="obj"
+						itemLabel="#{obj.nome} - #{obj.sigla}"
+						itemValue="#{obj}"/>
+					<p:ajax event="change" 
+						process="@this" 
+						update="somMunicipio" 
+						listener="#{funcionarioController.filtrarMunicipios}"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Município: "/>
+				<p:selectOneMenu 
+					id="somMunicipio"
+					value="#{funcionarioController.entity.municipio}"
+					disabled="#{funcionarioController.estado.id == null}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{funcionarioController.listaMunicipio}"
+						var="obj"
+						itemLabel="#{obj.nome} - #{obj.estado.sigla}"
+						itemValue="#{obj}"/>
+				</p:selectOneMenu>			
 				
 			</h:panelGrid>
 			<f:facet name="footer">

@@ -5,7 +5,7 @@ package br.unitins.pmwcars.model;
 public enum Perfil {
 
 	GERENTE(1, "Gerente"), 
-	CLIENTE(2, "Cliente"), 
+	CLIENTE(2, "Cliente"), // precisa?
 	OPERACIONAL(3, "Operacional");
 	
 	private int id;

@@ -13,7 +13,9 @@ import br.unitins.pmwcars.controller.listing.PessoaFisicaListing;
 import br.unitins.pmwcars.model.Estado;
 import br.unitins.pmwcars.model.Funcionario;
 import br.unitins.pmwcars.model.Municipio;
+import br.unitins.pmwcars.model.Perfil;
 import br.unitins.pmwcars.model.PessoaFisica;
+import br.untinis.pmwcars.repository.EstadoRepository;
 import br.untinis.pmwcars.repository.FuncionarioRepository;
 import br.untinis.pmwcars.repository.MunicipioRepository;
 import br.untinis.pmwcars.repository.PessoaFisicaRepository;
@@ -23,6 +25,31 @@ import br.untinis.pmwcars.repository.PessoaFisicaRepository;
 public class FuncionarioController extends Controller<Funcionario> {
 	
 	private static final long serialVersionUID = 1067992066000332854L;
+	
+	private List<Municipio> listaMunicipio = null;
+	
+	private Estado estado = null;
+	
+	private List<Estado> listaEstado = null;
+	
+	public Estado getEstado() {
+		if (estado == null)
+			estado = new Estado();
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
+	@Override
+	public void limpar() {
+		super.limpar();
+		estado = null;
+		listaEstado = null;
+		listaMunicipio = null;
+	}
+
 
 	@Override
 	public Funcionario getEntity() {
@@ -34,6 +61,11 @@ public class FuncionarioController extends Controller<Funcionario> {
 		}
 		return entity;
 	}
+	
+	public Perfil[] getListaPerfil() {
+		return Perfil.values();
+	}
+	
 	
 	public void buscarPessoaFisica() {
 		PessoaFisicaRepository repo = new PessoaFisicaRepository();
@@ -82,6 +114,36 @@ public class FuncionarioController extends Controller<Funcionario> {
 			return new ArrayList<Municipio>();
 		}
 	}
+	
+	public List<Estado> getListaEstado() { ///***********
+		if (listaEstado == null) {
+			EstadoRepository repo = new EstadoRepository();
+			try {
+				listaEstado =  repo.findAll();
+			} catch (RepositoryException e) {
+				listaEstado =  new ArrayList<Estado>();
+			}
+		}
+		return listaEstado;
+	}
+	
+	public List<Municipio> filtrarMunicipios() {
+		MunicipioRepository repo = new MunicipioRepository();
+		try {
+			listaMunicipio =  repo.findByEstado(getEstado().getId());
+		} catch (RepositoryException e) {
+			listaMunicipio =  new ArrayList<Municipio>();
+		}
+		return listaMunicipio;
+	}
+	
+	public List<Municipio> getListaMunicipio() {
+		if (listaMunicipio == null) {
+			listaMunicipio =  new ArrayList<Municipio>();
+		}
+		return listaMunicipio;
+	}
+	
 	
 
 }
