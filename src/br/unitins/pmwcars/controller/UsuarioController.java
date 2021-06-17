@@ -33,9 +33,9 @@ public class UsuarioController extends Controller<Usuario> {
 
 	private static final long serialVersionUID = -1239534887785769178L;
 	
-	private List<Municipio> listaMunicipio = null;
-	private Estado estado = null;
-	private List<Estado> listaEstado = null;
+//	private List<Municipio> listaMunicipio = null;
+//	private Estado estado = null;
+//	private List<Estado> listaEstado = null;
 	
 	private InputStream fotoInputStream = null;
 	private String nomeFoto = null;
@@ -77,11 +77,11 @@ public class UsuarioController extends Controller<Usuario> {
 
 	}
 	
-	public Estado getEstado() {
-		if (estado == null)
-			estado = new Estado();
-		return estado;
-	}
+//	public Estado getEstado() {
+//		if (estado == null)
+//			estado = new Estado();
+//		return estado;
+//	}
 	
 	public void salvarImagem() {
 		if (! Util.saveImageUsuario(fotoInputStream, "png", getEntity().getId())) {
@@ -104,16 +104,16 @@ public class UsuarioController extends Controller<Usuario> {
 			Util.redirect("/Pmwcars/login.xhtml");	
 	}
 	
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
+//	public void setEstado(Estado estado) {
+//		this.estado = estado;
+//	}
 	
 	@Override
 	public void limpar() {
 		super.limpar();
-		estado = null;
-		listaEstado = null;
-		listaMunicipio = null;
+//		estado = null;
+//		listaEstado = null;
+//		listaMunicipio = null;
 		nomeFoto = null;
 	}
 
@@ -122,8 +122,8 @@ public class UsuarioController extends Controller<Usuario> {
 		if (entity == null) {
 			entity = new Usuario();
 		    entity.setTelefone(new Telefone());
-			entity.setMunicipio(new Municipio());
-			entity.getMunicipio().setEstado(new Estado());
+//			entity.setMunicipio(new Municipio());
+//			entity.getMunicipio().setEstado(new Estado());
 		}
 		return entity;
 	}
@@ -142,9 +142,9 @@ public class UsuarioController extends Controller<Usuario> {
 			if (usu != null) {
 				setEntity(repo.findByPessoaFisica(getEntity().getPessoaFisica()));
 			}
-			if (getEntity().getMunicipio() != null)
-				setEstado(getEntity().getMunicipio().getEstado());
-			filtrarMunicipios();
+//			if (getEntity().getMunicipio() != null)
+//				setEstado(getEntity().getMunicipio().getEstado());
+//			filtrarMunicipios();
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 		}
@@ -154,35 +154,35 @@ public class UsuarioController extends Controller<Usuario> {
 		return Perfil.values();
 	}
 	
-	public List<Estado> getListaEstado() {
-		if (listaEstado == null) {
-			EstadoRepository repo = new EstadoRepository();
-			try {
-				listaEstado =  repo.findAll();
-			} catch (RepositoryException e) {
-				listaEstado =  new ArrayList<Estado>();
-			}
-		}
-		return listaEstado;
-	}
-	
-	public List<Municipio> filtrarMunicipios() {
-		MunicipioRepository repo = new MunicipioRepository();
-		try {
-			listaMunicipio =  repo.findByEstado(getEstado().getId());
-		} catch (RepositoryException e) {
-			listaMunicipio =  new ArrayList<Municipio>();
-		}
-		return listaMunicipio;
-	}
-	
-	public List<Municipio> getListaMunicipio() {
-		if (listaMunicipio == null) {
-			listaMunicipio =  new ArrayList<Municipio>();
-		}
-		return listaMunicipio;
-	}
-	
+//	public List<Estado> getListaEstado() {
+//		if (listaEstado == null) {
+//			EstadoRepository repo = new EstadoRepository();
+//			try {
+//				listaEstado =  repo.findAll();
+//			} catch (RepositoryException e) {
+//				listaEstado =  new ArrayList<Estado>();
+//			}
+//		}
+//		return listaEstado;
+//	}
+//	
+//	public List<Municipio> filtrarMunicipios() {
+//		MunicipioRepository repo = new MunicipioRepository();
+//		try {
+//			listaMunicipio =  repo.findByEstado(getEstado().getId());
+//		} catch (RepositoryException e) {
+//			listaMunicipio =  new ArrayList<Municipio>();
+//		}
+//		return listaMunicipio;
+//	}
+//	
+//	public List<Municipio> getListaMunicipio() {
+//		if (listaMunicipio == null) {
+//			listaMunicipio =  new ArrayList<Municipio>();
+//		}
+//		return listaMunicipio;
+//	}
+//	
 
 	
 			

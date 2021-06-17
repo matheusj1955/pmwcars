@@ -24,6 +24,8 @@ public enum Perfil {
 		paginasComPermissao.add("/Pmwcars/index.xhtml");
 		
 		if(id == 1) {
+			paginasComPermissao.add("/Pmwcars/pages/editarcliente.xhtml");
+			paginasComPermissao.add("/Pmwcars/pages/conta.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/listacarros.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/item.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/finalizado.xhtml");
@@ -37,7 +39,10 @@ public enum Perfil {
 
 
 		if (id == 2) {
+			paginasComPermissao.add("/Pmwcars/pages/conta.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/funcionario.xhtml");
+			paginasComPermissao.add("/Pmwcars/pages/editarfuncionario.xhtml");
+			paginasComPermissao.add("/Pmwcars/pages/editarcliente.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/funcionariolisting.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/pessoafisica.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/pessoafisicalisting.xhtml");
@@ -47,6 +52,7 @@ public enum Perfil {
 			paginasComPermissao.add("/Pmwcars/pages/editarusuario.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/carro.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/carrolisting.xhtml");
+			paginasComPermissao.add("/Pmwcars/pages/marcalisting.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/municipio.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/municipiolisting.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/img-usuario");
@@ -61,6 +67,7 @@ public enum Perfil {
 		}
 		
 		if (id == 3) {
+			paginasComPermissao.add("/Pmwcars/pages/conta.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/carro.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/carrolisting.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/editarusuario.xhtml");
@@ -69,8 +76,10 @@ public enum Perfil {
 			paginasComPermissao.add("/Pmwcars/pages/estado.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/estadolisting.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/img-usuario");
-
+			paginasComPermissao.add("/Pmwcars/pages/editarfuncionario.xhtml");
+			paginasComPermissao.add("/Pmwcars/pages/editarcliente.xhtml");
 			
+			paginasComPermissao.add("/Pmwcars/pages/marcalisting.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/listacarros.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/item.xhtml");
 			paginasComPermissao.add("/Pmwcars/pages/finalizado.xhtml");

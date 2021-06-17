@@ -185,13 +185,16 @@ public class ClienteController extends  Controller<Cliente> {
 
 	}
 	
-	public void salvar() {
+	
+	public void salvarImagem() {
 		if (! Util.saveImageUsuario(fotoInputStream, "png", getEntity().getId())) {
 			Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem do usuário.");
 			return;
 		}
 		// salvando no banco
 		super.salvar();
+		Util.redirect("/Pmwcars/pages/editarcliente.xhtml");	
+
 	}
 	
 }

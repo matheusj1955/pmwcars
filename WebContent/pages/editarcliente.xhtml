@@ -9,7 +9,31 @@
  		<p:growl id="growl" showDetail="true" />
 		<p:panel header="Cadastro de Cliente" >
 			
-	
+					<f:facet name="header">
+				<div>
+					<div align="center" style="width: 85%; display: inline-block;">
+						<h1>Cadastro de Cliente</h1>
+					</div>
+					<div align="right" style="float: right; position: relative;">
+						<img class="img-responsive"
+					     style="max-width: 80px!important;max-height: 80px!important;"            
+					     src="/Pmwcars/pages/img-usuario?nome=#{clienteController.entity.id}.png"/>
+					</div>
+				</div>				
+			</f:facet>
+			
+			<f:facet name="header">
+				<div>
+					<div align="center" style="width: 85%; display: inline-block;">
+						<h1>Cadastro de Cliente</h1>
+					</div>
+					<div align="right" style="float: right; position: relative;">
+						<img class="img-responsive"
+					     style="max-width: 80px!important;max-height: 80px!important;"            
+					     src="/Pmwcars/pages/img-usuario?nome=#{clienteController.entity.id}.png"/>
+					</div>
+				</div>				
+			</f:facet>
 		
 			<h:panelGrid columns="2">
 		
@@ -66,7 +90,15 @@
 						itemValue="#{obj}"/>
 				</p:selectOneMenu>			
 				
-
+				<h:form enctype="multipart/form-data"> 
+					<p:fileUpload listener="#{clienteController.upload}" 
+								  label="#{clienteController.nomeFoto}"
+								  mode="advanced"
+				                  update="@this messages" 
+				                  auto="false" sizeLimit="200000"/>
+				         
+				    <p:growl id="messages" showDetail="true" /> 
+				</h:form>
 				
 				
 			</h:panelGrid>

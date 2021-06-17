@@ -29,33 +29,33 @@ public class SecurityFilter implements Filter {
 		resp.setDateHeader("Expires", 0); 
 		
 //	 	Para desabilitar o filter, descomente as duas proximas linhas e comente o restante	
-		chain.doFilter(request, response);
-		return;
+//		chain.doFilter(request, response);
+//		return;
 		
-//		HttpServletRequest servletRequest = (HttpServletRequest) request;
-//		// imprime o endereco da pagina
-//		String endereco = servletRequest.getRequestURI();
-//		System.out.println(endereco);
-////	    ex.	/Saude/pages/usuario.xhtml
-//		
-//		// retorna a sessao corrente (false - para nao criar uma nova sessao)
-//		HttpSession session = servletRequest.getSession(false);
-//		
-//		Usuario usuario = null;
-//		if (session != null)
-//			usuario = (Usuario) session.getAttribute("usuarioLogado");
-//		
-//		if (usuario == null) {
-//			((HttpServletResponse) response).sendRedirect("/Pmwcars/login.xhtml");
-//		}  else {
-//			if (usuario.getPerfil().getPaginasComPermissao().contains(endereco)) {
-//				// segue o fluxo 
-//				chain.doFilter(request, response);
-//				return;
-//			} else {
-//				((HttpServletResponse) response).sendRedirect("/Pmwcars/semacesso.xhtml");
-//			}
-//		}
+		HttpServletRequest servletRequest = (HttpServletRequest) request;
+		// imprime o endereco da pagina
+		String endereco = servletRequest.getRequestURI();
+		System.out.println(endereco);
+//	    ex.	/Saude/pages/usuario.xhtml
+		
+		// retorna a sessao corrente (false - para nao criar uma nova sessao)
+		HttpSession session = servletRequest.getSession(false);
+		
+		Usuario usuario = null;
+		if (session != null)
+			usuario = (Usuario) session.getAttribute("usuarioLogado");
+		
+		if (usuario == null) {
+			((HttpServletResponse) response).sendRedirect("/Pmwcars/login.xhtml");
+		}  else {
+			if (usuario.getPerfil().getPaginasComPermissao().contains(endereco)) {
+				// segue o fluxo 
+				chain.doFilter(request, response);
+				return;
+			} else {
+				((HttpServletResponse) response).sendRedirect("/Pmwcars/semacesso.xhtml");
+			}
+		}
 				
 		
 	}

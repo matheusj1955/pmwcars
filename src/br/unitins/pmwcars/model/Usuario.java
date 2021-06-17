@@ -29,9 +29,9 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@JoinColumn(name = "id_pessoafisica", unique = true)
 	private PessoaFisica pessoaFisica;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_municipio")
-	private Municipio municipio;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id_municipio")
+//	private Municipio municipio;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_telefone", unique = true)
@@ -55,13 +55,13 @@ public class Usuario extends DefaultEntity<Usuario> {
 		this.pessoaFisica = pessoaFisica;
 	}
 
-	public Municipio getMunicipio() {
-		return municipio;
-	}
-
-	public void setMunicipio(Municipio municipio) {
-		this.municipio = municipio;
-	}
+//	public Municipio getMunicipio() {
+//		return municipio;
+//	}
+//
+//	public void setMunicipio(Municipio municipio) {
+//		this.municipio = municipio;
+//	}
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Telefone> listatelefone;

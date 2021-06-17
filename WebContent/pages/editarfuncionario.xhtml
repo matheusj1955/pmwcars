@@ -9,6 +9,19 @@
  		<p:growl id="growl" showDetail="true" />
 		<p:panel header="Cadastro de Funcionario" >
 		
+		<f:facet name="header">
+				<div>
+					<div align="center" style="width: 85%; display: inline-block;">
+						<h1>Cadastro de Funcionário</h1>
+					</div>
+					<div align="right" style="float: right; position: relative;">
+						<img class="img-responsive"
+					     style="max-width: 80px!important;max-height: 80px!important;"            
+					     src="/Pmwcars/pages/img-usuario?nome=#{funcionarioController.entity.id}.png"/>
+					</div>
+				</div>				
+			</f:facet>
+		
 			<h:panelGrid columns="2">
 			
 				<p:commandLink value="CPF: " 
@@ -79,7 +92,17 @@
 						itemValue="#{obj}"/>
 				</p:selectOneMenu>			
 				
-			
+								<h:form enctype="multipart/form-data"> 
+					<p:fileUpload listener="#{funcionarioController.upload}" 
+								  label="#{funcionarioController.nomeFoto}"
+								  mode="advanced"
+				                  update="@this messages" 
+				                  auto="false" sizeLimit="200000"/>
+				         
+				    <p:growl id="messages" showDetail="true" /> 
+				</h:form>
+				
+
 			</h:panelGrid>
 			<f:facet name="footer">
 				<p:commandButton 

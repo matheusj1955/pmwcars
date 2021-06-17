@@ -190,14 +190,17 @@ public class FuncionarioController extends Controller<Funcionario> {
 
 	}
 	
-	public void salvar() {
+	public void salvarImagem() {
 		if (! Util.saveImageUsuario(fotoInputStream, "png", getEntity().getId())) {
 			Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem do usuário.");
 			return;
 		}
 		// salvando no banco
 		super.salvar();
+		Util.redirect("/Pmwcars/pages/editarfuncionario.xhtml");	
+
 	}
+	
 	
 	
 }
