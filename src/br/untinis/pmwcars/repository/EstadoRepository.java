@@ -1,11 +1,9 @@
 package br.untinis.pmwcars.repository;
 
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
@@ -19,6 +17,23 @@ public class EstadoRepository extends Repository<Estado> {
 		
 		public EstadoRepository(EntityManager em) {
 			super(em);
+		}
+		
+		public List<Object[]> findByNomeSQL(String nome) throws RepositoryException {
+			EntityManager em = getEntityManager();
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append(" e.id, e.nome, e.sigla ");
+			sql.append("FROM ");
+			sql.append(" estado e ");
+			sql.append("WHERE ");
+			sql.append(" UPPER(e.nome) LIKE UPPER(:nome) ");
+			sql.append("ORDER BY e.nome ");
+			
+			Query query = em.createNativeQuery(sql.toString());
+			query.setParameter("nome", "%" + nome + "%");
+			
+			return query.getResultList();
 		}
 		
 		public List<Estado> findByNome(String nome) throws RepositoryException {

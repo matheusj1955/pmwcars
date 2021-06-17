@@ -1,6 +1,6 @@
 package br.unitins.pmwcars.model;
 
-import java.util.List;
+
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,6 +22,18 @@ public class ItemVenda extends DefaultEntity<ItemVenda>{
 	@JoinColumn(name="idcarro", nullable = false)
 	private Carro carro;
 	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public Carro getCarro() {
+		return carro;
+	}
+	public void setCarro(Carro carro) {
+		this.carro = carro;
+	}
 	public double getValor() {
 		return valor;
 	}

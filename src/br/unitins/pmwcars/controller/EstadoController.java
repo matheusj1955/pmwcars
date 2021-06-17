@@ -5,17 +5,13 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
-import br.unitins.pmwcars.controller.listing.EstadoListing;
+import br.unitins.pmwcars.controller.listing.EstadoListingSql;
 import br.unitins.pmwcars.model.Estado;
 
 @Named
 @ViewScoped
 public class EstadoController extends Controller<Estado> {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8786523749835624125L;
 
 	@Override
@@ -27,7 +23,8 @@ public class EstadoController extends Controller<Estado> {
 	}
 	
 	public void abrirEstadoListing() {
-		EstadoListing listing = new EstadoListing();
+//		EstadoListing listing = new EstadoListing();
+		EstadoListingSql listing = new EstadoListingSql();
 		listing.open();
 	}
 	

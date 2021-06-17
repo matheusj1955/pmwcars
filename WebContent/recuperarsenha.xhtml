@@ -11,38 +11,21 @@
 		
 		<h:panelGrid columns="2">
 			
-				<h:outputLabel value="Codigo: " />
-				<p:inputText value="#{pessoaController.entity.nome}"/>
+				<p:outputLabel value="Insira o Codigo: "/>
+				<p:inputText value="#{trocarSenhaController.codigo}"/>
+				
+				<p:outputLabel value="Nova senha: "/>
+				<p:inputText value="#{trocarSenhaController.senha}"/>
 			
-				<p:outputLabel value="Senha:  "/>
-				<p:inputText value="#{pessoaController.entity.email}"/>
+		</h:panelGrid>
 			
-				<h:outputLabel value="Confirmar senha: " />
-				<p:inputText id="itData" value="#{pessoaController.entity.nascimento}" 
-					converterMessage="Erro ao converter a data">
-					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
-				</p:inputText>
-                	
-			</h:panelGrid>
 			
 			<f:facet name="footer">
 				<p:commandButton 
 					value="Salvar" 
 					icon="far fa-save"
-					actionListener="#{pessoaController.salvar}"
+					actionListener="#{trocarSenhaController.trocaSenha}"
 					process="@this @form"
-					update="@form"/>
-				<p:commandButton 
-					value="Cancelar" 
-					icon="fas fa-times"
-					actionListener="#{usuarioController.excluir}"
-					process="@this @form"
-					update="@form"/>
-				<p:commandButton 
-					value="Limpar"
-					icon="fas fa-eraser"
-					actionListener="#{usuarioController.limpar}"
-					process="@this"
 					update="@form"/>
 			</f:facet>
 		

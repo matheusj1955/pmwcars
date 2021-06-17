@@ -14,9 +14,9 @@ public class Estado extends DefaultEntity<Estado> {
 		private String sigla;
 
 		
-		@OneToMany(fetch = FetchType.LAZY)
-		private List<Cidade> listaCidade;
-		
+//		@OneToMany(fetch = FetchType.LAZY)
+//		private List<Cidade> listaCidade;
+//		
 		public String getNome() {
 			return nome;
 		}

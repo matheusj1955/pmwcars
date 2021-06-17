@@ -1,5 +1,6 @@
 package br.unitins.pmwcars.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class Pessoa extends DefaultEntity<Pessoa> {
 	
 	private Date nascimento;
 
-	private String email;
+//	private String email;
 	
 
 	public String getNome() {
@@ -37,14 +38,6 @@ public class Pessoa extends DefaultEntity<Pessoa> {
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public Date getNascimento() {
 		return nascimento;
 	}
@@ -52,6 +45,18 @@ public class Pessoa extends DefaultEntity<Pessoa> {
 	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
+
+
+
+//	public String getEmail() {
+//		return email;
+//	}
+//
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
+
+
 	
 	
 	

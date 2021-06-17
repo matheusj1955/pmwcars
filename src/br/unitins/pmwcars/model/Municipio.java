@@ -9,11 +9,7 @@ import javax.persistence.ManyToOne;
 public class Municipio extends DefaultEntity<Municipio>{
 	
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6628558966716385308L;
- 
 	
 	private String nome;
 	private String sigla;

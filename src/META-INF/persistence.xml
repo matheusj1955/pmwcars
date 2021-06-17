@@ -6,12 +6,11 @@
 	<persistence-unit name="Pmwcars">
 		<class>br.unitins.pmwcars.converter.jpa.PerfilConverter</class>
 		<class>br.unitins.pmwcars.model.Carro</class>
-		<class>br.unitins.pmwcars.model.Cidade</class>
 		<class>br.unitins.pmwcars.model.Cliente</class>
 		<class>br.unitins.pmwcars.model.DefaultEntity</class>
 		<class>br.unitins.pmwcars.model.Estado</class>
 		<class>br.unitins.pmwcars.model.Funcionario</class>
-		<class>br.unitins.pmwcars.model.Garagem</class>
+		<class>br.unitins.pmwcars.model.Garragem</class>
 		<class>br.unitins.pmwcars.model.ItemVenda</class>
 		<class>br.unitins.pmwcars.model.Marca</class>
 		<class>br.unitins.pmwcars.model.Municipio</class>
@@ -47,7 +46,7 @@
 				value="org.hibernate.dialect.PostgreSQLDialect" />
 
 			<!-- create / create-drop / update -->
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 
 			<!-- Show SQL in console -->
 			<property name="hibernate.show_sql" value="true" />

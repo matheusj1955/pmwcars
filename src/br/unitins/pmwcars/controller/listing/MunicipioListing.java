@@ -37,6 +37,4 @@ public class MunicipioListing extends Listing<Municipio> {
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
-
-
 }

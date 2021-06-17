@@ -15,13 +15,15 @@ public class Usuario extends DefaultEntity<Usuario> {
 	
 	private static final long serialVersionUID = 6662444843042956351L;
 
-//	@JoinColumn(unique = true)
+	@JoinColumn(unique = true)
 	private String login;
 	
 	private String senha;
 	
 	private Perfil perfil;
 	
+//	private String email;
+
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pessoafisica", unique = true)
 	private PessoaFisica pessoaFisica;
@@ -30,7 +32,19 @@ public class Usuario extends DefaultEntity<Usuario> {
 	@JoinColumn(name = "id_municipio")
 	private Municipio municipio;
 	
+	@OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_telefone", unique = true)
+	private Telefone telefone;
 	
+	
+
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
 
 	public PessoaFisica getPessoaFisica() {
 		return pessoaFisica;
@@ -85,5 +99,13 @@ public class Usuario extends DefaultEntity<Usuario> {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
+
+//	public String getEmail() {
+//		return email;
+//	}
+//
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
 
 }

@@ -1,14 +1,20 @@
 package br.unitins.pmwcars.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.file.UploadedFile;
 
 import br.unitins.pmwcars.application.RepositoryException;
+import br.unitins.pmwcars.application.Security;
+import br.unitins.pmwcars.application.Util;
 import br.unitins.pmwcars.controller.listing.PessoaFisicaListing;
 import br.unitins.pmwcars.model.Estado;
 import br.unitins.pmwcars.model.Funcionario;
@@ -32,25 +38,6 @@ public class FuncionarioController extends Controller<Funcionario> {
 	
 	private List<Estado> listaEstado = null;
 	
-	public Estado getEstado() {
-		if (estado == null)
-			estado = new Estado();
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-	
-	@Override
-	public void limpar() {
-		super.limpar();
-		estado = null;
-		listaEstado = null;
-		listaMunicipio = null;
-	}
-
-
 	@Override
 	public Funcionario getEntity() {
 		if (entity == null) {
@@ -61,11 +48,18 @@ public class FuncionarioController extends Controller<Funcionario> {
 		}
 		return entity;
 	}
-	
+
+	@Override
+	public void limpar() {
+		super.limpar();
+		estado = null;
+		listaEstado = null;
+		listaMunicipio = null;
+	}
+
 	public Perfil[] getListaPerfil() {
 		return Perfil.values();
 	}
-	
 	
 	public void buscarPessoaFisica() {
 		PessoaFisicaRepository repo = new PessoaFisicaRepository();
@@ -100,6 +94,8 @@ public class FuncionarioController extends Controller<Funcionario> {
 			if (p != null) {
 				setEntity(repo.findByPessoaFisica(getEntity().getPessoaFisica()));
 			}
+			setEstado(getEntity().getMunicipio().getEstado());
+			filtrarMunicipios();
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 		}
@@ -144,6 +140,64 @@ public class FuncionarioController extends Controller<Funcionario> {
 		return listaMunicipio;
 	}
 	
-	
+	public Estado getEstado() {
+		if (estado == null)
+			estado = new Estado();
+		return estado;
+	}
 
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+	
+	private InputStream fotoInputStream = null;
+	private String nomeFoto = null;
+	
+	public InputStream getFotoInputStream() {
+		return fotoInputStream;
+	}
+
+	public void setFotoInputStream(InputStream fotoInputStream) {
+		this.fotoInputStream = fotoInputStream;
+	}
+
+	public String getNomeFoto() {
+		if (nomeFoto == null)
+			nomeFoto = "Selecione uma foto...";
+		return nomeFoto;
+	}
+	
+	public void upload(FileUploadEvent event) {
+		System.out.println("Entrou");
+		UploadedFile uploadFile = event.getFile();
+		System.out.println("nome arquivo: " + uploadFile.getFileName());
+		System.out.println("tipo: " + uploadFile.getContentType());
+		System.out.println("tamanho: " + uploadFile.getSize());
+
+		if (uploadFile.getContentType().equals("image/png")) {
+			try {
+				fotoInputStream = uploadFile.getInputStream();
+				nomeFoto = uploadFile.getFileName();
+				System.out.println("inputStream: " + uploadFile.getInputStream().toString());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Util.addInfoMessage("Upload realizado com sucesso.");
+		} else {
+			Util.addErrorMessage("O tipo da image deve ser png.");
+		}
+
+	}
+	
+	public void salvar() {
+		if (! Util.saveImageUsuario(fotoInputStream, "png", getEntity().getId())) {
+			Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem do usuário.");
+			return;
+		}
+		// salvando no banco
+		super.salvar();
+	}
+	
+	
 }

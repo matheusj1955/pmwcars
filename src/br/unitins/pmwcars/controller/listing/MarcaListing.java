@@ -37,5 +37,4 @@ public class MarcaListing extends Listing<Marca> {
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
-
 }

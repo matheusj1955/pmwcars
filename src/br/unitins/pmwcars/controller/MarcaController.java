@@ -18,9 +18,6 @@ import br.untinis.pmwcars.repository.MarcaRepository;
 @ViewScoped
 public class MarcaController extends Controller<Marca>{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5044487020385226027L;
 	private List<Marca> listaMarca;
 

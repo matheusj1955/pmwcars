@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+	<h:form>
+ 		<p:growl id="growl" showDetail="true" />
+		<p:panel header="Cadastro de Cliente" >
+			
+			<f:facet name="header">
+				<div>
+					<div align="center" style="width: 85%; display: inline-block;">
+						<h1>Cadastro de Cliente</h1>
+					</div>
+					<div align="right" style="float: right; position: relative;">
+						<img class="img-responsive"
+					     style="max-width: 80px!important;max-height: 80px!important;"            
+					     src="/Pmwcars/pages/img-usuario?nome=#{clienteController.entity.id}.png"/>
+					</div>
+				</div>				
+			</f:facet>
+		
+			<h:panelGrid columns="2">
+		
+		<p:commandLink value="CPF: " 
+					actionListener="#{clienteController.abrirPessoaFisicaListing}"
+					process="@this" update="@none">
+					 <p:ajax event="dialogReturn" listener="#{clienteController.obterPessoaFisicaListing}" 
+					  update="@form"/>
+				</p:commandLink>
+				<p:inputMask 
+					id="itcpf" 
+					validateMask="true"
+					mask="999.999.999-99"
+					value="#{clienteController.entity.pessoaFisica.cpf}"
+					disabled="#{clienteController.entity.id != null}" >
+					<p:ajax event="blur" update="@form" process="@this" listener="#{clienteController.buscarPessoaFisica}"/>
+				</p:inputMask>
+				
+				<p:outputLabel value="Nome: " />
+				<p:inputText id="itnome" value="#{clienteController.entity.pessoaFisica.nome}"
+							 disabled="#{clienteController.entity.id == null}" />
+							 
+		 		<h:outputLabel value="Nascimento: " />
+				<p:inputText id="itData" value="#{clienteController.entity.pessoaFisica.nascimento}" 
+					converterMessage="Erro ao converter a data">
+					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
+				</p:inputText>
+															
+				<p:outputLabel value="Estado: "/>
+				<p:selectOneMenu 
+					value="#{clienteController.estado}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{clienteController.listaEstado}"
+						var="obj"
+						itemLabel="#{obj.nome} - #{obj.sigla}"
+						itemValue="#{obj}"/>
+					<p:ajax event="change" 
+						process="@this" 
+						update="somMunicipio" 
+						listener="#{clienteController.filtrarMunicipios}"/>
+				</p:selectOneMenu>
+				
+				<p:outputLabel value="Município: "/>
+				<p:selectOneMenu 
+					id="somMunicipio"
+					value="#{clienteController.entity.municipio}"
+					disabled="#{clienteController.estado.id == null}">
+					<f:selectItem itemLabel="Selecione ..."/>
+					<f:selectItems 
+						value="#{clienteController.listaMunicipio}"
+						var="obj"
+						itemLabel="#{obj.nome} - #{obj.estado.sigla}"
+						itemValue="#{obj}"/>
+				</p:selectOneMenu>			
+				
+				<h:form enctype="multipart/form-data"> 
+					<p:fileUpload listener="#{clienteController.upload}" 
+								  label="#{clienteController.nomeFoto}"
+								  mode="advanced"
+				                  update="@this messages" 
+				                  auto="false" sizeLimit="200000"/>
+				         
+				    <p:growl id="messages" showDetail="true" /> 
+				</h:form>
+				
+				
+			</h:panelGrid>
+			<f:facet name="footer">
+				<p:commandButton 
+					value="Salvar" 
+					icon="far fa-save"
+					actionListener="#{clienteController.salvar}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Excluir" 
+					icon="far fa-trash-alt"
+					actionListener="#{clienteController.excluir}"
+					process="@this @form"
+					update="@form">
+					<p:confirm header="Confirmação" 
+						message="Deseja excluir o cliente ?" 
+						icon="pi pi-info-circle"/>
+				</p:commandButton>
+				<p:commandButton 
+					value="Limpar"
+					icon="fas fa-eraser"
+					actionListener="#{clienteController.limpar}"
+					process="@this"
+					update="@form"/>
+			</f:facet>
+		</p:panel>
+	</h:form>
+</ui:define>
+</ui:composition>

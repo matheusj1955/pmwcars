@@ -20,6 +20,25 @@ public class MunicipioRepository extends Repository<Municipio> {
 		super(em);
 	}
 	
+	
+	public List<Object[]> findByNomeSQL(String nome) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT ");
+		sql.append(" m.id, m.nome, m.sigla ");
+		sql.append("FROM ");
+		sql.append(" municipio m ");
+		sql.append("WHERE ");
+		sql.append(" UPPER(m.nome) LIKE UPPER(:nome) ");
+		sql.append("ORDER BY m.nome ");
+		
+		Query query = em.createNativeQuery(sql.toString());
+		query.setParameter("nome", "%" + nome + "%");
+		
+		return query.getResultList();
+	}
+	
+	
 	public List<Municipio> findByEstado(Integer id) throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();

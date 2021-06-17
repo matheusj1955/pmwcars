@@ -5,22 +5,12 @@
 	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
 
 <ui:define name="content">
-
-<h:body>
-
-		<p:ajaxStatus onstart="PF('statusDialog').show()"
-			onsuccess="PF('statusDialog').hide()" />
-			
-		<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
-			closable="false" resizable="false" showHeader="false">
-			<p:graphicImage name="/images/processando.gif" />
-		</p:dialog>
-
 	<h:form>
  		<p:growl id="growl" showDetail="true" />
 		<p:panel header="Cadastro de Usuario" >
-			<h:panelGrid columns="2">
+		
 			
+				<h:panelGrid columns="2">
 				<p:commandLink value="CPF: " 
 					actionListener="#{usuarioController.abrirPessoaFisicaListing}"
 					process="@this" update="@none">
@@ -38,11 +28,19 @@
 				<p:inputText value="#{usuarioController.entity.login}"/>
 			
 				<p:outputLabel value="Senha: "/>
-				<p:inputText value="#{usuarioController.entity.senha}"/>
-	
-				<p:outputLabel value="Email: "/>
-				<p:inputText value="#{usuarioController.entity.pessoaFisica.email}"/>
-							
+				<p:password value="#{usuarioController.entity.senha}"/>
+
+								<p:outputLabel value="Telefone (DDD):" />
+								<p:inputMask id="itDdd"
+									value="#{usuarioController.entity.telefone.codigoArea}" mask="99" />
+
+								<p:outputLabel value="Telefone (Número):" />
+								<p:inputMask id="itNumero"
+									value="#{usuarioController.entity.telefone.numero}"
+									mask="99999-9999" />
+
+						
+								
  				<p:outputLabel value="Perfil: "/>
 				<p:selectOneMenu 
 					value="#{usuarioController.entity.perfil}">
@@ -81,8 +79,9 @@
 						itemLabel="#{obj.nome} - #{obj.estado.sigla}"
 						itemValue="#{obj}"/>
 				</p:selectOneMenu>
-                	
-			</h:panelGrid>
+				
+
+		</h:panelGrid>
 		<f:facet name="footer">
 				<p:commandButton 
 					value="Salvar" 
@@ -103,10 +102,8 @@
 					process="@this"
 					update="@form"/>
 			</f:facet>
-
 		</p:panel>
 			
 	</h:form>
-	</h:body>
 </ui:define>
 </ui:composition>

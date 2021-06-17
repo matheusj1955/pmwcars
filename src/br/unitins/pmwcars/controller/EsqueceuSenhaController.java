@@ -18,11 +18,12 @@ import br.unitins.pmwcars.model.Usuario;
 import br.untinis.pmwcars.repository.Repository;
 import br.untinis.pmwcars.repository.UsuarioRepository;
 
-
 @Named
 @ViewScoped
 public class EsqueceuSenhaController extends Controller<RecuperarSenha> {
-	private static final long serialVersionUID = 8893135762115295270L;
+
+
+	private static final long serialVersionUID = -39496554240197129L;
 	
 	private String email;
 

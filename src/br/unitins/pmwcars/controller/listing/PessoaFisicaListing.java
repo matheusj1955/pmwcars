@@ -19,6 +19,7 @@ public class PessoaFisicaListing extends Listing<PessoaFisica> {
 		super("pessoafisicalisting", new PessoaFisicaRepository());
 	}
 	
+	
 	public void pesquisar() {
 		PessoaFisicaRepository repo = new PessoaFisicaRepository();
 		try {

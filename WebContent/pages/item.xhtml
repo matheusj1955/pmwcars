@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+
+<h:head>
+	<title>PmwCars</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<!-- Bootstrap CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<!-- Costumize CSS -->
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<!-- Container -->
+	<div class="container">
+		<div class="row">
+		
+		
+			<div class="col-md-8">
+						<h1 class="text-center">Honda Civic</h1>
+			     <p:graphicImage name="layout/images/civicfren.png" class="img-fluid"/>
+			</div>
+			
+			<div class="col-md-4">
+				<h3>Versões apartir de:</h3>
+				<h1 class="my-3">R$129.000,00</h1>
+				<h4>5% de desconto a vista na loja!</h4>
+			
+			    <a href="venda.xhtml" class="btn col-12 mt-5 btn-lg btn-outline-primary">Comprar</a>				  
+				
+			
+			
+				<h5 class="mt-5">CIVIC LX 2.0 FLEX AUT 2021/2022</h5>
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+</h:body>
+
+</ui:define>
+</ui:composition>
