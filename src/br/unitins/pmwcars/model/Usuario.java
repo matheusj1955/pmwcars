@@ -3,6 +3,7 @@ package br.unitins.pmwcars.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -99,6 +100,18 @@ public class Usuario extends DefaultEntity<Usuario> {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
+	
+	@Column
+	private String codigoSeguranca;
+
+	public String getCodigoSeguranca() {
+		return codigoSeguranca;
+	}
+
+	public void setCodigoSeguranca(String codigoSeguranca) {
+		this.codigoSeguranca = codigoSeguranca;
+	}
+	
 
 //	public String getEmail() {
 //		return email;

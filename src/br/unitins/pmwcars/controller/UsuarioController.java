@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.persistence.Column;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
@@ -181,5 +182,8 @@ public class UsuarioController extends Controller<Usuario> {
 		}
 		return listaMunicipio;
 	}
+	
+
+	
 			
 }

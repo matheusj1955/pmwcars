@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+	<h:form>
+ 		<p:growl id="growl" showDetail="true" />
+		<p:panel header="Cadastro de Usuario" >
+				
+			
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Nome:" />
+							<p:inputText id="itNome" value="#{contaController.entity.pessoaFisica.nome}"
+								required="true" requiredMessage="Informe o nome." />
+
+							<p:commandLink value="CPF: " />
+							<p:inputText value="#{contaController.entity.pessoaFisica.cpf}"
+								 disabled="true"/>							
+							
+							<p:outputLabel value="Login: "/>
+							<p:inputText value="#{contaController.entity.login}"/>
+						
+							<p:outputLabel value="Senha: "/>
+							<p:password value="#{contaController.entity.senha}"/>
+							
+										
+							<p:outputLabel value="Telefone (DDD):" />
+							<p:inputMask
+								value="#{contaController.entity.telefone.codigoArea}" mask="99" />
+							
+							<p:outputLabel value="Telefone:" />
+							<p:inputMask
+								value="#{contaController.entity.telefone.numero}" mask="99999-9999" />
+			
+						</h:panelGrid>
+		<f:facet name="footer">
+				<p:commandButton 
+					value="Salvar" 
+					icon="far fa-save"
+					actionListener="#{contaController.salvar}"
+					process="@this @form"
+					update="@form"
+					onClick="window.location.reload()"
+					/>
+				<p:commandButton 
+					value="Excluir" 
+					icon="far fa-trash-alt"
+					actionListener="#{contaController.excluir}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Limpar"
+					icon="fas fa-eraser"
+					actionListener="#{contaController.limpar}"
+					process="@this"
+					update="@form"/>
+			</f:facet>
+		</p:panel>
+			
+	</h:form>
+</ui:define>
+</ui:composition>
