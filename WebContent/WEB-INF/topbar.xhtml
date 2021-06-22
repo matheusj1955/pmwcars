@@ -10,15 +10,20 @@
             <a href="#" id="menu-btn" class="menu-btn">
                 <i class="pi pi-bars"></i>
             </a>
+     			<div>
+            
             <p:graphicImage name="layout/images/logoverme.png" styleClass="topbar-logo" />
     
     		<p:commandLink
-    			value="Olá #{templateController.usuarioLogado.nome} (Sair)" 
+    			value="Olá #{templateController.usuarioLogado.pessoaFisica.nome} (Sair)" 
     			rendered="#{templateController.usuarioLogado != null}"
     			styleClass="topbar-link" 
     			process="@this"
     			actionListener="#{templateController.encerrarSessao}"/>
-            
+			</div>
+			
+			
+
         </div>
     </div>
 

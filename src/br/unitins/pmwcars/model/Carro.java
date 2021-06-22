@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.enterprise.inject.Model;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,24 +21,17 @@ public class Carro extends DefaultEntity<Carro> {
 	
 	private Date ano;
 
-	@OneToMany(mappedBy = "carro")
+	private Modelo modelo;
+
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<ItemVenda> listaitemvenda;
 	
-//	@ManyToOne
-//	@JoinColumn(name="idmodelo", nullable = false)
-//	private Modelo modelo;
-	
-	@ManyToOne
-	@JoinColumn(name="idmarca", nullable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Marca marca;
-	
-//	@ManyToOne
-//	@JoinColumn(name="idstatus", nullable = false)
-//	private Status status;
 
 
-	@OneToMany(mappedBy = "carro")
-	private List<Garagem> garragem;
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Garragem> garragem;
 	
 
 	public String getNome() {
@@ -64,8 +58,33 @@ public class Carro extends DefaultEntity<Carro> {
 		this.ano = ano;
 	}
 
+	public Marca getMarca() {
+		return marca;
+	}
 
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public Modelo getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(Modelo modelo) {
+		this.modelo = modelo;
+	}
 	
-//	private Date senha;
+
+//	@ManyToOne
+//	@JoinColumn(name="idmodelo", nullable = false)
+//	private Modelo modelo;
+	
+
+//	@JoinColumn(name="idmarca", nullable = false)
+	
+//	@ManyToOne
+//	@JoinColumn(name="idstatus", nullable = false)
+//	private Status status;
+
 
 }

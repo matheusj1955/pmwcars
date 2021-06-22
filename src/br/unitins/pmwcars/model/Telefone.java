@@ -22,4 +22,8 @@ public class Telefone extends DefaultEntity<Telefone>{
 		this.numero = numero;
 	}
 	
+	@Override
+	public String toString() {
+		return codigoArea+ " " +numero;
+	}
 }

@@ -8,60 +8,69 @@ import javax.persistence.Query;
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.model.Funcionario;
+import br.unitins.pmwcars.model.PessoaFisica;
 
-public class FuncionarioRepository {
+public class FuncionarioRepository extends Repository<Funcionario> {
 
-	public void save(Funcionario funcionario) throws RepositoryException {
-		try {
-			EntityManager em = JPAUtil.getEntityManager();
-			
-			em.getTransaction().begin();
-			
-			// insert or update
-			em.merge(funcionario);
-			
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			System.out.println("Erro ao executar o método Save do Repository");
-			throw new RepositoryException("Erro ao Salvar");
-		}
-		
+	public FuncionarioRepository() {
+		super(JPAUtil.getEntityManager());
 	}
 	
-	public void remove(Funcionario funcionario) throws RepositoryException {
-		try {
-			EntityManager em = JPAUtil.getEntityManager();
-			
-			em.getTransaction().begin();
-			
-			// insert or update
-			em.remove(funcionario);
-			
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			System.out.println("Erro ao executar o método Remove do Repository");
-			throw new RepositoryException("Erro ao Remover");
-		}
+	public FuncionarioRepository(EntityManager em) {
+		super(em);
 	}
-	
-	public List<Funcionario> findAll() throws RepositoryException {
-		EntityManager em = JPAUtil.getEntityManager();
+
+	public Funcionario findByPessoaFisica(PessoaFisica pessoaFisica) throws RepositoryException {
+		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();
 		jpql.append("SELECT ");
 		jpql.append(" p ");
 		jpql.append("FROM ");
 		jpql.append(" Funcionario p ");
-		jpql.append("ORDER BY p.nome ");
+		jpql.append("WHERE ");
+		jpql.append(" p.pessoaFisica.id = :id ");
+		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("id", pessoaFisica.getId());
+		
+		Funcionario funcionario = null;
+		try {
+			funcionario = (Funcionario) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return funcionario;
+	}
+	
+	public List<Funcionario> findByNome(String nome) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" p ");
+		jpql.append("FROM ");
+		jpql.append(" Funcionario p ");
+		jpql.append("WHERE ");
+		jpql.append(" UPPER(p.pessoaFisica.nome) LIKE UPPER(:nome) ");
+		jpql.append("ORDER BY p.pessoaFisica.nome ");
+		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("nome", "%" + nome + "%");
+		
+		return query.getResultList();
+	}
+	
+	public List<Funcionario> findAll() throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" p ");
+		jpql.append("FROM ");
+		jpql.append(" Funcionario p ");
+		jpql.append("ORDER BY p.pessoaFisica.nome ");
 		
 		Query query = em.createQuery(jpql.toString());
 		return query.getResultList();
 		 
 	}
-
-	public Funcionario findId(Funcionario funcionario) throws RepositoryException {
-		EntityManager em = JPAUtil.getEntityManager();
-		return em.find(funcionario.getClass(), funcionario.getId());
-	}
-
-	
 }

@@ -2,6 +2,7 @@ package br.unitins.pmwcars.model;
 
 import java.util.List;
 
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 public enum TipoFuncionario {
@@ -9,7 +10,7 @@ public enum TipoFuncionario {
 	GERENTE(1, "Gerente"), 
 	OPERACIONAL(1, "Operacional");
 
-	@OneToMany(mappedBy = "tipofuncionario")
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Funcionario> listafuncionario;
 	
 	private int id;

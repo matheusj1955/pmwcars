@@ -8,6 +8,8 @@ import javax.persistence.Query;
 import br.unitins.pmwcars.application.JPAUtil;
 import br.unitins.pmwcars.application.RepositoryException;
 import br.unitins.pmwcars.model.DefaultEntity;
+import br.unitins.pmwcars.model.Marca;
+import br.unitins.pmwcars.model.PessoaFisica;
 import br.unitins.pmwcars.model.Usuario;
 
 public class UsuarioRepository extends Repository<Usuario> {
@@ -20,46 +22,115 @@ public class UsuarioRepository extends Repository<Usuario> {
 		super(em);
 	}
 	
-	public List<Usuario> findAll() throws RepositoryException{ 
+	public Usuario findByLogin(String login, String senha) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" u ");
+		jpql.append("FROM ");
+		jpql.append(" Usuario u ");
+		jpql.append("WHERE ");
+		jpql.append(" u.login = :login ");
+		jpql.append(" AND u.senha = :senha ");
 		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("login", login);
+		query.setParameter("senha", senha);
+		
+		Usuario usuario = null;
 		try {
-			EntityManager em = JPAUtil.getEntityManager();
-			Query query = em.createQuery("SELECT u FROM Usuario u ORDER BY u.nome ");
-			
-			return query.getResultList();
+			usuario = (Usuario) query.getSingleResult();
 		} catch (Exception e) {
-			System.out.println("Erro ao realizar uma consulta ao banco.");
 			e.printStackTrace();
-			throw new RepositoryException("Erro ao realizar uma consulta ao banco.");
 		}
 		
+		return usuario;
 	}
 	
-	public Usuario findUsuario(String login, String senha) throws RepositoryException{ 
+	public Usuario findByEmail(String email) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" u ");
+		jpql.append("FROM ");
+		jpql.append(" Usuario u ");
+		jpql.append("WHERE ");
+		jpql.append(" u.login = :email ");
 		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("email", email);
+		
+		Usuario usuario = null;
 		try {
-			EntityManager em = JPAUtil.getEntityManager();
-			
-			StringBuffer jpql = new StringBuffer();
-			jpql.append("SELECT ");
-			jpql.append("  u ");
-			jpql.append("FROM ");
-			jpql.append("  Usuario u ");
-			jpql.append("WHERE ");
-			jpql.append("  u.login = :login ");
-			jpql.append("  AND u.senha = :senha ");
-			
-			Query query = em.createQuery(jpql.toString());
-			query.setParameter("login", login);
-			query.setParameter("senha", senha);
-			
-			return (Usuario) query.getSingleResult();
-			
+			usuario = (Usuario) query.getSingleResult();
 		} catch (Exception e) {
-			System.out.println("Erro ao realizar uma consulta ao banco.");
 			e.printStackTrace();
-			return null;
 		}
 		
+		return usuario;
 	}
+	
+	public Usuario findByPessoaFisica(PessoaFisica pessoaFisica) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" u ");
+		jpql.append("FROM ");
+		jpql.append(" Usuario u ");
+		jpql.append("WHERE ");
+		jpql.append(" u.pessoaFisica.id = :id ");
+		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("id", pessoaFisica.getId());
+		
+		Usuario usuario = null;
+		try {
+			usuario = (Usuario) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return usuario;
+	}
+	
+	public List<Usuario> findAll() throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" u ");
+		jpql.append("FROM ");
+		jpql.append(" Usuario u ");
+		jpql.append("ORDER BY u.pessoaFisica.nome ");
+		
+		Query query = em.createQuery(jpql.toString());
+		return query.getResultList();
+	}
+	
+//	public Usuario findUsuario(String login, String senha) throws RepositoryException{ 
+//		
+//		try {
+//			EntityManager em = JPAUtil.getEntityManager();
+//			
+//			StringBuffer jpql = new StringBuffer();
+//			jpql.append("SELECT ");
+//			jpql.append("  u ");
+//			jpql.append("FROM ");
+//			jpql.append("  Usuario u ");
+//			jpql.append("WHERE ");
+//			jpql.append("  u.login = :login ");
+//			jpql.append("  AND u.senha = :senha ");
+//			
+//			Query query = em.createQuery(jpql.toString());
+//			query.setParameter("login", login);
+//			query.setParameter("senha", senha);
+//			
+//			return (Usuario) query.getSingleResult();
+//			
+//		} catch (Exception e) {
+//			System.out.println("Erro ao realizar uma consulta ao banco.");
+//			e.printStackTrace();
+//			return null;
+//		}
+//		
+//	}
 }

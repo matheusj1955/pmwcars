@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+	<h:form>
+ 		<p:growl id="growl" showDetail="true" />
+		<p:panel header="Recuperar Senha" >
+		
+		<h:panelGrid columns="2">
+			
+				<p:outputLabel value="Insira o Codigo: "/>
+				<p:inputText value="#{trocarSenhaController.codigo}"/>
+				
+				<p:outputLabel value="Nova senha: "/>
+				<p:inputText value="#{trocarSenhaController.senha}"/>
+			
+		</h:panelGrid>
+			
+			
+			<f:facet name="footer">
+				<p:commandButton 
+					value="Salvar" 
+					icon="far fa-save"
+					actionListener="#{trocarSenhaController.trocaSenha}"
+					process="@this @form"
+					update="@form"/>
+			</f:facet>
+		
+		</p:panel>
+		
+		
+	</h:form>
+</ui:define>
+</ui:composition>

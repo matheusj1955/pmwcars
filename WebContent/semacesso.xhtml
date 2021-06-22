@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+
+<h:head>
+	<title>PmwCars</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<!-- Bootstrap CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<!-- Costumize CSS -->
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<!-- Container -->
+	<div class="container">
+
+		<div class="text-center">
+	     	<p:graphicImage name="layout/images/parado.png" class="img-fluid"/>
+	     	<h1 class="mt-5">Você não possuí autorização!</h1>
+  				<a href="/Pmwcars/index.xhtml" class="mt-5 btn btn-primary">Voltar ao Início</a>
+		</div>
+		
+		
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+</h:body>
+
+</ui:define>
+</ui:composition>

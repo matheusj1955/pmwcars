@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+
+	<h:form>
+ 		<p:growl id="growl" showDetail="true" />
+		<p:panel header="Cadastro de Carro" >
+			<h:panelGrid columns="2">
+			
+			
+				<p:outputLabel value="Nome: "/>
+				<p:inputText value="#{carroController.entity.nome}"/>
+				
+                <p:outputLabel value="Valor: "/>
+                <p:inputNumber value="#{carroController.entity.valor}" modifyValueOnWheel="false" />
+                
+				<h:outputLabel value="Ano: " />
+				<p:inputText id="itData" value="#{carroController.entity.ano}" 
+					converterMessage="Erro ao converter a data">
+					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
+				</p:inputText>
+				
+				<p:commandLink value="Marca: " 
+					actionListener="#{carroController.abrirMarcaListing}"
+					process="@this" update="@none">
+					 <p:ajax event="dialogReturn" listener="#{carroController.obterMarcaListing}" 
+					  update="@form"/>
+				</p:commandLink>
+				<p:inputText value="#{carroController.entity.marca.nome}" 
+							disabled="true"/>            
+							
+					<p:outputLabel value="Modelo: "/>
+							<p:selectOneMenu 
+								value="#{carroController.entity.modelo}">
+								<f:selectItem itemLabel="Selecione ..."/>
+								<f:selectItems 
+									value="#{carroController.listaModelo}"
+									var="obj"
+									itemLabel="#{obj.label}"
+									itemValue="#{obj}"/>
+					</p:selectOneMenu>
+					
+					
+
+
+			</h:panelGrid>
+			<f:facet name="footer">
+				<p:commandButton 
+					value="Salvar" 
+					icon="far fa-save"
+					actionListener="#{carroController.salvar}"
+					process="@this @form"
+					update="@form"/>
+				<p:commandButton 
+					value="Excluir" 
+					icon="far fa-trash-alt"
+					actionListener="#{carroController.excluir}"
+					process="@this @form"
+					update="@form">
+					<p:confirm header="Confirmação" 
+						message="Deseja excluir o carro ?" 
+						icon="pi pi-info-circle"/>
+				</p:commandButton>
+				<p:commandButton 
+					value="Limpar"
+					icon="fas fa-eraser"
+					actionListener="#{carroController.limpar}"
+					process="@this"
+					update="@form"/>
+			</f:facet>
+		</p:panel>
+	</h:form>
+</ui:define>
+</ui:composition>

@@ -2,6 +2,7 @@ package br.unitins.pmwcars.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -13,9 +14,9 @@ public class Estado extends DefaultEntity<Estado> {
 		private String sigla;
 
 		
-		@OneToMany(mappedBy = "estado")
-		private List<Cidade> listaCidade;
-		
+//		@OneToMany(fetch = FetchType.LAZY)
+//		private List<Cidade> listaCidade;
+//		
 		public String getNome() {
 			return nome;
 		}

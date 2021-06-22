@@ -1,0 +1,114 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+<ui:define name="content">
+
+<h:head>
+	<title>PmwCars</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<!-- Bootstrap CSS -->
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<!-- Costumize CSS -->
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<!-- Container -->
+	<div class="container">
+		     <p:graphicImage style="height: 50px; width:150px;display: block;margin-left: auto;margin-right: auto" 
+		     name="layout/images/logopmwt.png" class="text-center img-fluid"/>
+	
+			<div class="row">
+				<input class="mb-5 ml-5 col-2 form-control" type="text" placeholder="Pesquisar"/> 
+				<a href="/Pmwcars/pages/listacarros.xhtml" style="height: 40px" 
+				class="ml-1 btn btn-primary"><i class=" fas fa-search" style="font-size: 30px"></i></a>
+
+			</div>
+		<div class="row">
+		
+			<div class="col-md-3 ml-5">
+				<div class="card text-center" style="width: 18rem;">
+					  <p:graphicImage name="layout/images/mustangao.png" class="card-img-top"/>
+					  <div class="card-body">
+					    <h5 class="card-title">Ford Mustang</h5>
+					    <p class="card-text">Conheça o motor ford em seu maximo desempenho!</p>
+	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
+					  </div>
+				</div>
+			</div>
+			
+			<div class="col-md-3 mx-5">
+				<div class="card text-center" style="width: 18rem;">
+					  <p:graphicImage name="layout/images/civic.png"  class="card-img-top"/>
+					  <div class="card-body">
+					    <h5 class="card-title">Civic</h5>
+					    <p class="card-text">Potência, elegância e conforto em uma único carro</p>
+	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
+					  </div>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="card text-center" style="width: 18rem;">
+					  <p:graphicImage name="layout/images/s10.png" class="card-img-top"/>
+					  <div class="card-body">
+					    <h5 class="card-title">S10</h5>
+					    <p class="card-text">Nova S10, isso são cavalos e não póneis</p>
+	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
+					  </div>
+				</div>
+			</div>
+			
+				<div class="col-md-3 ml-5">
+				<div class="card text-center" style="width: 18rem;">
+            	<p:graphicImage name="layout/images/mustangao.png"  class="card-img-top"/>
+					  <div class="card-body">
+					    <h5 class="card-title">Ford Mustang</h5>
+					    <p class="card-text">Conheça o motor ford em seu maximo desempenho!</p>
+	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
+					  </div>
+				</div>
+			</div>
+			
+			<div class="col-md-3 mx-5">
+				<div class="card text-center" style="width: 18rem;">
+					  <p:graphicImage name="layout/images/civic.png" class="card-img-top"/>
+					  <div class="card-body">
+					    <h5 class="card-title">Civic</h5>
+					    <p class="card-text">Potência, elegância e conforto em uma único carro</p>
+	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
+					  </div>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<div class="card text-center" style="width: 18rem;">
+					  <p:graphicImage name="layout/images/s10.png" class="card-img-top"/>
+					  <div class="card-body">
+					    <h5 class="card-title">S10</h5>
+					    <p class="card-text">Nova S10, isso são cavalos e não póneis</p>
+	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
+					  </div>
+				</div>
+			</div>
+						
+		</div>
+		
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+</h:body>
+
+</ui:define>
+</ui:composition>

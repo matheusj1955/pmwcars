@@ -1,10 +1,13 @@
 	package br.unitins.pmwcars.application;
 
+import java.util.Map;
+
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 public class Session {
-private static Session session = null;
+	
+	private static Session session = null;
 	
 	private Session() {}
 	
@@ -13,6 +16,22 @@ private static Session session = null;
 			session = new Session();
 		return session;
 	}
+	
+
+	private static Map<String, Object> getSessionMap() {
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		if (ec == null) {
+			throw new RuntimeException("Este recurso eh para ser utilizado apenas em aplicacoes WEB.");
+		}
+		
+		return ec.getSessionMap();
+	}
+	
+	public static Object getItem(String key) {
+		return getSessionMap().get(key);
+	}
+	
+	
 	
 	private ExternalContext getExternalContext() {
 		if (FacesContext.getCurrentInstance().getExternalContext() == null) {
@@ -25,6 +44,8 @@ private static Session session = null;
 		return getExternalContext().getSessionMap().get(key);
 	}
 	
+
+	
 	public void setAttribute(String key, Object value) {
 		getExternalContext().getSessionMap().put(key, value);
 	}
@@ -32,6 +53,5 @@ private static Session session = null;
 	public void invalidateSession() {
 		getExternalContext().invalidateSession();
 	}
-
 
 }

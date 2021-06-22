@@ -17,7 +17,7 @@ public class EstadoListing extends Listing<Estado> {
 	private String filtro;
 	
 	public EstadoListing() {
-		super("paislisting", new EstadoRepository());
+		super("estadolisting", new EstadoRepository());
 	}
 	
 	public void pesquisar() {
