@@ -6,7 +6,6 @@
 	xmlns:p="http://primefaces.org/ui" >
 	
 <h:head>
-	<title>Consulta de Pessoa Física</title>
 </h:head>
 
 <h:body>	
@@ -69,6 +68,7 @@
 										actionListener="#{pessoaFisicaListing.select(entity.id)}"
 										process="@this" update="@form"/>
 								</p:column>
+								
 			
 								<f:facet name="footer">
 							        Total de #{pessoaFisicaListing.list.size()} Pessoas Físicas.

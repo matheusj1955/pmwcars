@@ -3,11 +3,14 @@ package br.unitins.pmwcars.model;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -25,7 +28,9 @@ public class Pessoa extends DefaultEntity<Pessoa> {
 	
 	private String nome;
 	
-	private Date nascimento;
+////	@Column(nullable = false)
+//	@Temporal(TemporalType.DATE)
+	private LocalDateTime nascimento;
 
 //	private String email;
 	
@@ -38,13 +43,15 @@ public class Pessoa extends DefaultEntity<Pessoa> {
 		this.nome = nome;
 	}
 
-	public Date getNascimento() {
+	public LocalDateTime getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(LocalDateTime nascimento) {
 		this.nascimento = nascimento;
 	}
+
+
 
 
 

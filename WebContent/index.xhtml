@@ -20,86 +20,41 @@
 </h:head>
 <h:body>
 	<!-- Container -->
-	<div class="container">
+	<h:form class="container">
 		     <p:graphicImage style="height: 50px; width:150px;display: block;margin-left: auto;margin-right: auto" 
 		     name="layout/images/logopmwt.png" class="text-center img-fluid"/>
-	
+
 			<div class="row">
-				<input class="mb-5 ml-5 col-2 form-control" type="text" placeholder="Pesquisar"/> 
-				<a href="/Pmwcars/pages/listacarros.xhtml" style="height: 40px" 
-				class="ml-1 btn btn-primary"><i class=" fas fa-search" style="font-size: 30px"></i></a>
+				<p:inputText styleClass="mb-5 ml-5 col-2 form-control" value="#{indexController.pesquisar}"
+				 placeholder="Pesquisar" />
+				<p:commandButton actionListener="#{indexController.getCarrosDisponiveis}" icon="pi pi-search" 
+				styleClass="ui-button-info rounded-button" update="@form" style="height: 32px" class="ml-1 btn btn-primary"/>
 			</div>
+			
+			
 		<div class="row">
-		
+			
+			<ui:repeat var="carro" value="#{indexController.carrosDisponiveis}">
+			
 			<div class="col-md-3 ml-5">
 				<div class="card text-center" style="width: 18rem;">
-					  <p:graphicImage name="layout/images/mustangao.png" class="card-img-top"/>
 					  <div class="card-body">
-					    <h5 class="card-title">Ford Mustang</h5>
-					    <p class="card-text">Conheça o motor ford em seu maximo desempenho!</p>
-	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
+					    <h5 class="card-title">#{carro.marca.nome} - #{carro.nome}</h5>
+					    <p class="card-text">R$: #{carro.valor}</p> 
+   					    <p class="card-text">Ano: #{carro.ano}</p> 				    
+   					    <p class="card-text">Modelo: #{carro.modelo}</p> 				    
+	    				<p:commandButton actionListener="#{indexController.comprarCarro(carro)}" class="btn btn-primary"
+	    				value="Comprar"/>
+	    				
 					  </div>
 				</div>
 			</div>
 			
-			<div class="col-md-3 mx-5">
-				<div class="card text-center" style="width: 18rem;">
-					  <p:graphicImage name="layout/images/civic.png"  class="card-img-top"/>
-					  <div class="card-body">
-					    <h5 class="card-title">Civic</h5>
-					    <p class="card-text">Potência, elegância e conforto em uma único carro</p>
-	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
-					  </div>
-				</div>
-			</div>
-			
-			<div class="col-md-3">
-				<div class="card text-center" style="width: 18rem;">
-					  <p:graphicImage name="layout/images/s10.png" class="card-img-top"/>
-					  <div class="card-body">
-					    <h5 class="card-title">S10</h5>
-					    <p class="card-text">Nova S10, isso são cavalos e não póneis</p>
-	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
-					  </div>
-				</div>
-			</div>
-			
-				<div class="col-md-3 ml-5">
-				<div class="card text-center" style="width: 18rem;">
-            	<p:graphicImage name="layout/images/mustangao.png"  class="card-img-top"/>
-					  <div class="card-body">
-					    <h5 class="card-title">Ford Mustang</h5>
-					    <p class="card-text">Conheça o motor ford em seu maximo desempenho!</p>
-	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
-					  </div>
-				</div>
-			</div>
-			
-			<div class="col-md-3 mx-5">
-				<div class="card text-center" style="width: 18rem;">
-					  <p:graphicImage name="layout/images/civic.png" class="card-img-top"/>
-					  <div class="card-body">
-					    <h5 class="card-title">Civic</h5>
-					    <p class="card-text">Potência, elegância e conforto em uma único carro</p>
-	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
-					  </div>
-				</div>
-			</div>
-			
-			<div class="col-md-3">
-				<div class="card text-center" style="width: 18rem;">
-					  <p:graphicImage name="layout/images/s10.png" class="card-img-top"/>
-					  <div class="card-body">
-					    <h5 class="card-title">S10</h5>
-					    <p class="card-text">Nova S10, isso são cavalos e não póneis</p>
-	    				<a href="/Pmwcars/pages/item.xhtml" class="btn btn-primary">Comprar</a>
-					  </div>
-				</div>
-			</div>
+			</ui:repeat>
 						
 		</div>
 		
-	</div>
+	</h:form>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

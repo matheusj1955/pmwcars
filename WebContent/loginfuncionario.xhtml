@@ -22,7 +22,7 @@
 			<div class="col-md-6 col-md-auto login-box">		
 	 			<h:messages styleClass="alert alert-danger hmessages"  />
 				
-				<h1 class="text-center wdi-red">Login</h1>
+				<h1 class="text-center wdi-red">Login (Funcionário)</h1>
 				<h:form>
 					<div class="form-row">
 						<div class="col-md-12">
@@ -40,7 +40,7 @@
 							<div class="col-md-12 mt-3">
 							<h:commandButton value="Entrar"
 								styleClass="btn btn-lg btn-block btn-outline-danger"
-								action="#{loginController.logar()}" />
+								action="#{loginController.logarFuncionario()}" />
 							</div>
 							
 							<div class="col-md-6 mt-3">
@@ -53,7 +53,7 @@
 							
 							<h:commandButton value="Não possui cadastro?"
 								styleClass="btn btn-block btn-info"
-								action="#{loginController.criarCliente()}" />
+								action="#{loginController.criarFuncionario()}" />
 							</div>
 						</div>
 

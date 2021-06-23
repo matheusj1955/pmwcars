@@ -13,12 +13,15 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import br.unitins.pmwcars.application.RepositoryException;
+import br.unitins.pmwcars.application.Security;
 import br.unitins.pmwcars.application.Util;
 import br.unitins.pmwcars.controller.listing.PessoaFisicaListing;
 import br.unitins.pmwcars.model.Cliente;
 import br.unitins.pmwcars.model.Estado;
 import br.unitins.pmwcars.model.Municipio;
+import br.unitins.pmwcars.model.Perfil;
 import br.unitins.pmwcars.model.PessoaFisica;
+import br.unitins.pmwcars.model.Usuario;
 import br.untinis.pmwcars.repository.ClienteRepository;
 import br.untinis.pmwcars.repository.EstadoRepository;
 import br.untinis.pmwcars.repository.MunicipioRepository;
@@ -40,6 +43,7 @@ public class ClienteController extends  Controller<Cliente> {
 	public Cliente getEntity() {
 		if (entity == null) {
 			entity = new Cliente();
+			entity.setUsuario(new Usuario());
 			entity.setPessoaFisica(new PessoaFisica());
 			entity.setMunicipio(new Municipio());
 			entity.getMunicipio().setEstado(new Estado());
@@ -187,14 +191,26 @@ public class ClienteController extends  Controller<Cliente> {
 	
 	
 	public void salvarImagem() {
+//		if (! Util.saveImageUsuario(fotoInputStream, "png", getEntity().getUsuario().getId())) {
 		if (! Util.saveImageUsuario(fotoInputStream, "png", getEntity().getId())) {
 			Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem do usuário.");
 			return;
 		}
+		getEntity().getUsuario().setSenha(Security.hashcli(getEntity()));
+
 		// salvando no banco
 		super.salvar();
 		Util.redirect("/Pmwcars/pages/editarcliente.xhtml");	
 
+	}
+	
+	public void salvar() {
+		// gerando o hash da senha
+		getEntity().getUsuario().setSenha(Security.hashcli(getEntity()));
+		getEntity().getUsuario().setPerfil(Perfil.CLIENTE);
+		// salvando no banco
+		super.salvar();
+			Util.redirect("/Pmwcars/login.xhtml");	
 	}
 	
 }

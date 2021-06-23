@@ -15,10 +15,9 @@ public class Cliente extends DefaultEntity<Cliente>{
 
 	private static final long serialVersionUID = -7042528876951516024L;
 
-//	@OneToOne
-//	@JoinColumn(unique = true, name="idusuario", nullable = false)
-//	//@PrimaryKeyJoinColumn
-//	private Usuario usuario;
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(unique = true, name="idusuario", nullable = false)
+	private Usuario usuario;
 	
 	
 	@OneToMany(mappedBy = "cliente")
@@ -49,6 +48,15 @@ public class Cliente extends DefaultEntity<Cliente>{
 
 	public void setPessoaFisica(PessoaFisica pessoaFisica) {
 		this.pessoaFisica = pessoaFisica;
+	}
+	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override

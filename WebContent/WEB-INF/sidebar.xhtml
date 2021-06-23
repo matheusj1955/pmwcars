@@ -18,14 +18,21 @@
              <li>
                 <h:link outcome="/pages/funcionario">
 					<i class="fas fa-car"></i>
-                    <span>Cadastro de Funcionário</span>
+                    <span>Funcionário</span>
+                </h:link>
+            </li>
+            
+             <li>
+                <h:link outcome="/pages/cliente">
+					<i class="fas fa-car"></i>
+                    <span>Cliente</span>
                 </h:link>
             </li>
                         
              <li>
                 <h:link outcome="/pages/carro">
 					<i class="fas fa-car"></i>
-                    <span>Cadastro de Carro</span>
+                    <span>Carro</span>
                 </h:link>
             </li>    
            
@@ -44,7 +51,14 @@
             </li>    
             
            <li>
-            <h:link outcome="/pages/conta">
+            <h:link outcome="/pages/conta" rendered="#{templateController.cliente}">
+					<i class="fas fa-car"></i>
+                    <span>Perfil</span>
+                </h:link>
+            </li> 
+            
+            <li>
+            <h:link outcome="/pages/contafuncionario" rendered="#{templateController.funcionario}">
 					<i class="fas fa-car"></i>
                     <span>Perfil</span>
                 </h:link>

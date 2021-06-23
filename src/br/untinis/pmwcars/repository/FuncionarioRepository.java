@@ -20,6 +20,31 @@ public class FuncionarioRepository extends Repository<Funcionario> {
 		super(em);
 	}
 
+	public Funcionario findByLogin(String login, String senha) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" u ");
+		jpql.append("FROM ");
+		jpql.append(" Funcionario u ");
+		jpql.append("WHERE ");
+		jpql.append(" u.usuario.login = :login ");
+		jpql.append(" AND u.usuario.senha = :senha ");
+		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("login", login);
+		query.setParameter("senha", senha);
+		
+		Funcionario funcionario = null;
+		try {
+			funcionario = (Funcionario) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return funcionario;
+	}
+	
 	public Funcionario findByPessoaFisica(PessoaFisica pessoaFisica) throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();

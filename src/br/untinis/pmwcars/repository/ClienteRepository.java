@@ -20,6 +20,31 @@ public class ClienteRepository extends Repository<Cliente> {
 		super(em);
 	}
 	
+	public Cliente findByLogin(String login, String senha) throws RepositoryException {
+		EntityManager em = getEntityManager();
+		StringBuffer jpql = new StringBuffer();
+		jpql.append("SELECT ");
+		jpql.append(" u ");
+		jpql.append("FROM ");
+		jpql.append(" Cliente u ");
+		jpql.append("WHERE ");
+		jpql.append(" u.usuario.login = :login ");
+		jpql.append(" AND u.usuario.senha = :senha ");
+		
+		Query query = em.createQuery(jpql.toString());
+		query.setParameter("login", login);
+		query.setParameter("senha", senha);
+		
+		Cliente cliente = null;
+		try {
+			cliente = (Cliente) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return cliente;
+	}
+	
 	public Cliente findByPessoaFisica(PessoaFisica pessoaFisica) throws RepositoryException {
 		EntityManager em = getEntityManager();
 		StringBuffer jpql = new StringBuffer();

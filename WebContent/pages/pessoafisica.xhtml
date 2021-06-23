@@ -6,7 +6,6 @@
 	xmlns:p="http://primefaces.org/ui" >
 
 <h:head>
-	<title>Consulta de Marcas</title>
 
 </h:head>
 
@@ -25,6 +24,12 @@
 				<p:outputLabel value="Nome: "/>
 				<p:inputText value="#{pessoaFisicaController.entity.nome}"/>
 				
+				<p:outputLabel value="Nascimento: " />
+				<p:datePicker Value="#{pessoaFisicaController.entity.nascimento}" 
+					converterMessage="Erro ao converter a data"
+					 showIcon="true" />
+											
+					 
 			</h:panelGrid>
 			<f:facet name="footer">
 				<p:commandButton 

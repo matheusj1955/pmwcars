@@ -1,5 +1,6 @@
 package br.unitins.pmwcars.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,13 @@ import javax.persistence.OneToOne;
 @Entity
 public class Usuario extends DefaultEntity<Usuario> {
 	
+	@Override
+	public String toString() {
+		return "Usuario [login=" + login + ", senha=" + senha + ", perfil=" + perfil + ", pessoaFisica=" + pessoaFisica
+				+ ", telefone=" + telefone + ", listatelefone=" + listatelefone + ", codigoSeguranca=" + codigoSeguranca
+				+ "]";
+	}
+
 	private static final long serialVersionUID = 6662444843042956351L;
 
 	@JoinColumn(unique = true)
@@ -22,7 +30,7 @@ public class Usuario extends DefaultEntity<Usuario> {
 	private String senha;
 	
 	private Perfil perfil;
-	
+	//		setPerfil("CLIENTE"); // pra ele sempre começar como cliente e caso for funcionario é trocado
 //	private String email;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

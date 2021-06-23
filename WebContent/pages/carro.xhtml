@@ -11,19 +11,6 @@
 		<p:panel header="Cadastro de Carro" >
 			<h:panelGrid columns="2">
 			
-			
-				<p:outputLabel value="Nome: "/>
-				<p:inputText value="#{carroController.entity.nome}"/>
-				
-                <p:outputLabel value="Valor: "/>
-                <p:inputNumber value="#{carroController.entity.valor}" modifyValueOnWheel="false" />
-                
-				<h:outputLabel value="Ano: " />
-				<p:inputText id="itData" value="#{carroController.entity.ano}" 
-					converterMessage="Erro ao converter a data">
-					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
-				</p:inputText>
-				
 				<p:commandLink value="Marca: " 
 					actionListener="#{carroController.abrirMarcaListing}"
 					process="@this" update="@none">
@@ -31,7 +18,17 @@
 					  update="@form"/>
 				</p:commandLink>
 				<p:inputText value="#{carroController.entity.marca.nome}" 
-							disabled="true"/>            
+							disabled="true"/>  
+							
+				<p:outputLabel value="Nome: "/>
+				<p:inputText value="#{carroController.entity.nome}"/>
+				
+                <p:outputLabel value="Valor: "/>
+                <p:inputNumber value="#{carroController.entity.valor}" modifyValueOnWheel="false" />
+                
+				<h:outputLabel value="Ano: " />
+				<p:inputMask
+				value="#{carroController.entity.ano}" mask="9999" />
 							
 					<p:outputLabel value="Modelo: "/>
 							<p:selectOneMenu 
@@ -44,8 +41,8 @@
 									itemValue="#{obj}"/>
 					</p:selectOneMenu>
 					
-					
-
+                <p:outputLabel value="Quantidade: "/>
+                <p:inputNumber value="#{carroController.entity.estoque}" modifyValueOnWheel="false" />
 
 			</h:panelGrid>
 			<f:facet name="footer">

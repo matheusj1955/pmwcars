@@ -9,19 +9,7 @@
  		<p:growl id="growl" showDetail="true" />
 		<p:panel header="Cadastro de Cliente" >
 			
-					<f:facet name="header">
-				<div>
-					<div align="center" style="width: 85%; display: inline-block;">
-						<h1>Cadastro de Cliente</h1>
-					</div>
-					<div align="right" style="float: right; position: relative;">
-						<img class="img-responsive"
-					     style="max-width: 80px!important;max-height: 80px!important;"            
-					     src="/Pmwcars/pages/img-usuario?nome=#{clienteController.entity.id}.png"/>
-					</div>
-				</div>				
-			</f:facet>
-			
+		
 			<f:facet name="header">
 				<div>
 					<div align="center" style="width: 85%; display: inline-block;">
@@ -55,6 +43,13 @@
 				<p:outputLabel value="Nome: " />
 				<p:inputText id="itnome" value="#{clienteController.entity.pessoaFisica.nome}"
 							 disabled="#{clienteController.entity.id == null}" />
+							 
+   				<p:outputLabel value="Login: " />
+				<p:inputText value="#{clienteController.entity.usuario.login}"/>
+				
+				
+ 				<p:outputLabel value="Senha: " />
+				<p:password	value="#{clienteController.entity.usuario.senha}" />
 							 
 		 		<h:outputLabel value="Nascimento: " />
 				<p:inputText id="itData" value="#{clienteController.entity.pessoaFisica.nascimento}" 

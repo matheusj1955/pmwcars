@@ -15,7 +15,7 @@
             <p:graphicImage name="layout/images/logoverme.png" styleClass="topbar-logo" />
     
     		<p:commandLink
-    			value="Olá #{templateController.usuarioLogado.pessoaFisica.nome} (Sair)" 
+    			value="#{templateController.nomeUsuario} (Sair)" 
     			rendered="#{templateController.usuarioLogado != null}"
     			styleClass="topbar-link" 
     			process="@this"

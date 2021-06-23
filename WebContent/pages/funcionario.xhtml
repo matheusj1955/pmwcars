@@ -30,15 +30,20 @@
 				<p:inputText id="itnome" value="#{funcionarioController.entity.pessoaFisica.nome}"
 							 disabled="#{funcionarioController.entity.id == null}" />
 							 
+ 				<p:outputLabel value="Login: " />
+				<p:inputText value="#{funcionarioController.entity.usuario.login}"/>
+				
+ 				<p:outputLabel value="Senha: " />
+				<p:password	value="#{funcionarioController.entity.usuario.senha}" />
+			
+							 
            	    <p:outputLabel value="Salario: "/>
                 <p:inputNumber value="#{funcionarioController.entity.salario}" modifyValueOnWheel="false" />
                 
-				<h:outputLabel value="Nascimento: " />
-				<p:inputText id="itData" value="#{funcionarioController.entity.pessoaFisica.nascimento}" 
-					converterMessage="Erro ao converter a data">
-					<f:convertDateTime type="Date" pattern="dd/MM/yyyy" />
-				</p:inputText>
-											
+				<p:outputLabel value="Nascimento: " />
+				<p:datePicker value="#{funcionarioController.entity.pessoaFisica.nascimento}" 
+				/>
+												
 				<p:outputLabel value="Perfil: "/>
 				<p:selectOneMenu 
 					value="#{funcionarioController.entity.perfil}">
@@ -79,6 +84,13 @@
 						itemValue="#{obj}"/>
 				</p:selectOneMenu>			
 				
+						<p:outputLabel value="Telefone (DDD):" />
+							<p:inputMask
+								value="#{funcionarioController.entity.usuario.telefone.codigoArea}" mask="99" />
+							
+							<p:outputLabel value="Telefone:" />
+							<p:inputMask
+							value="#{funcionarioController.entity.usuario.telefone.numero}" mask="99999-9999" />
 			
 			</h:panelGrid>
 			<f:facet name="footer">

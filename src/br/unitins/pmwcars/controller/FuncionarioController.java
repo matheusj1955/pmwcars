@@ -21,6 +21,8 @@ import br.unitins.pmwcars.model.Funcionario;
 import br.unitins.pmwcars.model.Municipio;
 import br.unitins.pmwcars.model.Perfil;
 import br.unitins.pmwcars.model.PessoaFisica;
+import br.unitins.pmwcars.model.Telefone;
+import br.unitins.pmwcars.model.Usuario;
 import br.untinis.pmwcars.repository.EstadoRepository;
 import br.untinis.pmwcars.repository.FuncionarioRepository;
 import br.untinis.pmwcars.repository.MunicipioRepository;
@@ -42,6 +44,8 @@ public class FuncionarioController extends Controller<Funcionario> {
 	public Funcionario getEntity() {
 		if (entity == null) {
 			entity = new Funcionario();
+			entity.setUsuario(new Usuario());
+			entity.getUsuario().setTelefone(new Telefone());
 			entity.setPessoaFisica(new PessoaFisica());
 			entity.setMunicipio(new Municipio());
 			entity.getMunicipio().setEstado(new Estado());
@@ -195,12 +199,21 @@ public class FuncionarioController extends Controller<Funcionario> {
 			Util.addErrorMessage("Erro ao salvar. Não foi possível salvar a imagem do usuário.");
 			return;
 		}
+		getEntity().getUsuario().setSenha(Security.hashfun(getEntity()));
 		// salvando no banco
 		super.salvar();
 		Util.redirect("/Pmwcars/pages/editarfuncionario.xhtml");	
-
+		
 	}
 	
+	@Override
+	public void salvar() {
+		// gerando o hash da senha
+		getEntity().getUsuario().setSenha(Security.hashfun(getEntity()));
+		// salvando no banco
+		super.salvar();
+//			Util.redirect("/Pmwcars/login.xhtml");	
+	}
 	
 	
 }

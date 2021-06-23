@@ -1,5 +1,6 @@
 package br.unitins.pmwcars.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,24 +20,44 @@ public class Carro extends DefaultEntity<Carro> {
 	
 	private double valor;
 	
-	private Date ano;
+	private String ano;
 
 	private Modelo modelo;
-
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<ItemVenda> listaitemvenda;
 	
+	private String imagem;
+
+	private Integer estoque;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Marca marca;
 
-
-	@OneToMany(fetch = FetchType.LAZY)
-	private List<Garragem> garragem;
+//	@OneToMany (fetch = FetchType.EAGER)
+//	@JoinTable(name="Cars_Garragem",
+//			joinColumns={@JoinColumn(name = "id_paciente", unique=false)},
+//			inverseJoinColumns={@JoinColumn(name = "id_precaucao", unique=false)})
+//	private List<Precaucao> precaucao;
 	
 
 	public String getNome() {
 		return nome;
 	}
+
+	public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
+	}
+
+	public String getAno() {
+		return ano;
+	}
+
+	public void setAno(String ano) {
+		this.ano = ano;
+	}
+
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -50,13 +71,6 @@ public class Carro extends DefaultEntity<Carro> {
 		this.valor = valor;
 	}
 
-	public Date getAno() {
-		return ano;
-	}
-
-	public void setAno(Date ano) {
-		this.ano = ano;
-	}
 
 	public Marca getMarca() {
 		return marca;
@@ -73,6 +87,23 @@ public class Carro extends DefaultEntity<Carro> {
 	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
 	}
+
+	@Override
+	public String toString() {
+		return "Carro [nome=" + nome + ", valor=" + valor + ", ano=" + ano + ", modelo=" + modelo + ", imagem=" + imagem
+				+ ", estoque=" + estoque + ", marca=" + marca + "]";
+	}
+
+	public String getImagem() {
+		return imagem;
+	}
+
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+	
+	
 	
 
 //	@ManyToOne

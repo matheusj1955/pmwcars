@@ -32,6 +32,13 @@
 				<p:inputText id="itnome" value="#{clienteController.entity.pessoaFisica.nome}"
 							 disabled="#{clienteController.entity.id == null}" />
 							 
+  				<p:outputLabel value="Login: " />
+				<p:inputText value="#{clienteController.entity.usuario.login}"/>
+				
+				
+ 				<p:outputLabel value="Senha: " />
+				<p:password	value="#{clienteController.entity.usuario.senha}" />
+			
 		 		<h:outputLabel value="Nascimento: " />
 				<p:inputText id="itData" value="#{clienteController.entity.pessoaFisica.nascimento}" 
 					converterMessage="Erro ao converter a data">

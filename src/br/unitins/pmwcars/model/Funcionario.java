@@ -17,12 +17,12 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 
 	private Perfil perfil;
 
-//	@OneToOne
-//	@JoinColumn(unique = true, name="idusuario", nullable = false)
-//	//@PrimaryKeyJoinColumn
-//	private Usuario usuario;
-	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinColumn(unique = true, name="idusuario", nullable = false)
+	//@PrimaryKeyJoinColumn
+	private Usuario usuario;
+	
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.ALL})
 	@JoinColumn(name = "id_pessoafisica", unique = true)
 	private PessoaFisica pessoaFisica;
 	
@@ -36,6 +36,14 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 	
 	
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Municipio getMunicipio() {
 		return municipio;
 	}
@@ -71,7 +79,10 @@ public class Funcionario extends DefaultEntity<Funcionario> {
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + getId() + ", cpf=" + pessoaFisica.getCpf() + ", nome=" + pessoaFisica.getNome() + "]";
+		return "Funcionario [salario=" + salario + ", perfil=" + perfil + ", usuario=" + usuario + ", pessoaFisica="
+				+ pessoaFisica + ", municipio=" + municipio + "]";
 	}
+
+
 	
 }

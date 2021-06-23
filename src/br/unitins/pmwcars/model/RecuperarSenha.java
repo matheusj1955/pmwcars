@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 public class RecuperarSenha extends DefaultEntity<RecuperarSenha>{
 
 	private static final long serialVersionUID = -389537380117963235L;
-	
+
 	private String codigo;
 	private LocalDateTime dataLimite;
 	private boolean utilizado;

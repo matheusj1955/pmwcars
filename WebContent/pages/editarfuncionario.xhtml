@@ -46,6 +46,12 @@
            	    <p:outputLabel value="Salario: "/>
                 <p:inputNumber value="#{funcionarioController.entity.salario}" modifyValueOnWheel="false" />
                 
+   				<p:outputLabel value="Login: " />
+				<p:inputText value="#{funcionarioController.entity.usuario.login}"/>
+				
+ 				<p:outputLabel value="Senha: " />
+				<p:password	value="#{funcionarioController.entity.usuario.senha}" />
+                
 				<h:outputLabel value="Nascimento: " />
 				<p:inputText id="itData" value="#{funcionarioController.entity.pessoaFisica.nascimento}" 
 					converterMessage="Erro ao converter a data">

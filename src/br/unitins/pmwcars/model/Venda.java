@@ -1,14 +1,9 @@
 package br.unitins.pmwcars.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 
 @Entity
 public class Venda extends DefaultEntity<Venda>{
@@ -20,20 +15,74 @@ public class Venda extends DefaultEntity<Venda>{
 //	inverseJoinColumns = @JoinColumn(name = "idpagamento"))
 //	private List<Pagamento> listapagamento;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
-	private List<ItemVenda> listaItemVenda;
 	private LocalDateTime data;
+	
+	private String numeroCartao;
+	private String nomeCartao;
+	private String validadeCartao;
+	private Integer parcelas;
+	private String codigoCartao;
+	private Usuario usuario;
+	
+	public String getNumeroCartao() {
+		return numeroCartao;
+	}
+
+	public void setNumeroCartao(String numeroCartao) {
+		this.numeroCartao = numeroCartao;
+	}
+
+	public String getNomeCartao() {
+		return nomeCartao;
+	}
+
+	public void setNomeCartao(String nomeCartao) {
+		this.nomeCartao = nomeCartao;
+	}
 
 	
-	public List<ItemVenda> getListaItemVenda() {
-		return listaItemVenda;
+	public String getValidadeCartao() {
+		return validadeCartao;
+	}
+
+	public void setValidadeCartao(String validadeCartao) {
+		this.validadeCartao = validadeCartao;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Integer getParcelas() {
+		return parcelas;
+	}
+
+	public void setParcelas(Integer parcelas) {
+		this.parcelas = parcelas;
+	}
+
+	public String getCodigoCartao() {
+		return codigoCartao;
+	}
+
+	public void setCodigoCartao(String codigoCartao) {
+		this.codigoCartao = codigoCartao;
 	}
 
 
-	public void setListaItemVenda(List<ItemVenda> listaItemVenda) {
-		this.listaItemVenda = listaItemVenda;
+	private Carro carro;
+
+	public Carro getCarro() {
+		return carro;
 	}
 
+	public void setCarro(Carro carro) {
+		this.carro = carro;
+	}
 
 	public LocalDateTime getData() {
 		return data;
